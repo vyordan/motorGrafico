@@ -1,0 +1,3 @@
+/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles/Visualizador3D.dir
+/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles/edit_cache.dir
+/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles/rebuild_cache.dir
