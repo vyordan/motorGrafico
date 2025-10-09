@@ -3,6 +3,7 @@ Visualizador3D: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
   CMakeFiles/Visualizador3D.dir/src/main.cpp.o \
+  CMakeFiles/Visualizador3D.dir/src/glad.c.o \
   /usr/lib/libGL.so \
   /usr/lib/libglfw.so.3.4 \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so \
@@ -46,6 +47,8 @@ Visualizador3D: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
 
 CMakeFiles/Visualizador3D.dir/src/main.cpp.o:
+
+CMakeFiles/Visualizador3D.dir/src/glad.c.o:
 
 /usr/lib/libGL.so:
 

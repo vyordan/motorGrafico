@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/yordan/Documentos/C++/visualizador_3d/src/glad.c" "CMakeFiles/Visualizador3D.dir/src/glad.c.o" "gcc" "CMakeFiles/Visualizador3D.dir/src/glad.c.o.d"
   "/home/yordan/Documentos/C++/visualizador_3d/src/main.cpp" "CMakeFiles/Visualizador3D.dir/src/main.cpp.o" "gcc" "CMakeFiles/Visualizador3D.dir/src/main.cpp.o.d"
   "" "Visualizador3D" "gcc" "CMakeFiles/Visualizador3D.dir/link.d"
   )
