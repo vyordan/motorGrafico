@@ -129,6 +129,102 @@ Visualizador3D/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/build
 .PHONY : Visualizador3D/fast
 
+src/Conexion.o: src/Conexion.cpp.o
+.PHONY : src/Conexion.o
+
+# target to build an object file
+src/Conexion.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o
+.PHONY : src/Conexion.cpp.o
+
+src/Conexion.i: src/Conexion.cpp.i
+.PHONY : src/Conexion.i
+
+# target to preprocess a source file
+src/Conexion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.i
+.PHONY : src/Conexion.cpp.i
+
+src/Conexion.s: src/Conexion.cpp.s
+.PHONY : src/Conexion.s
+
+# target to generate assembly for a file
+src/Conexion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.s
+.PHONY : src/Conexion.cpp.s
+
+src/GestorPuntos.o: src/GestorPuntos.cpp.o
+.PHONY : src/GestorPuntos.o
+
+# target to build an object file
+src/GestorPuntos.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o
+.PHONY : src/GestorPuntos.cpp.o
+
+src/GestorPuntos.i: src/GestorPuntos.cpp.i
+.PHONY : src/GestorPuntos.i
+
+# target to preprocess a source file
+src/GestorPuntos.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.i
+.PHONY : src/GestorPuntos.cpp.i
+
+src/GestorPuntos.s: src/GestorPuntos.cpp.s
+.PHONY : src/GestorPuntos.s
+
+# target to generate assembly for a file
+src/GestorPuntos.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.s
+.PHONY : src/GestorPuntos.cpp.s
+
+src/Matematicas/Vector3.o: src/Matematicas/Vector3.cpp.o
+.PHONY : src/Matematicas/Vector3.o
+
+# target to build an object file
+src/Matematicas/Vector3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o
+.PHONY : src/Matematicas/Vector3.cpp.o
+
+src/Matematicas/Vector3.i: src/Matematicas/Vector3.cpp.i
+.PHONY : src/Matematicas/Vector3.i
+
+# target to preprocess a source file
+src/Matematicas/Vector3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.i
+.PHONY : src/Matematicas/Vector3.cpp.i
+
+src/Matematicas/Vector3.s: src/Matematicas/Vector3.cpp.s
+.PHONY : src/Matematicas/Vector3.s
+
+# target to generate assembly for a file
+src/Matematicas/Vector3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.s
+.PHONY : src/Matematicas/Vector3.cpp.s
+
+src/Punto3D.o: src/Punto3D.cpp.o
+.PHONY : src/Punto3D.o
+
+# target to build an object file
+src/Punto3D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o
+.PHONY : src/Punto3D.cpp.o
+
+src/Punto3D.i: src/Punto3D.cpp.i
+.PHONY : src/Punto3D.i
+
+# target to preprocess a source file
+src/Punto3D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.i
+.PHONY : src/Punto3D.cpp.i
+
+src/Punto3D.s: src/Punto3D.cpp.s
+.PHONY : src/Punto3D.s
+
+# target to generate assembly for a file
+src/Punto3D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.s
+.PHONY : src/Punto3D.cpp.s
+
 src/glad.o: src/glad.c.o
 .PHONY : src/glad.o
 
@@ -186,6 +282,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Visualizador3D"
+	@echo "... src/Conexion.o"
+	@echo "... src/Conexion.i"
+	@echo "... src/Conexion.s"
+	@echo "... src/GestorPuntos.o"
+	@echo "... src/GestorPuntos.i"
+	@echo "... src/GestorPuntos.s"
+	@echo "... src/Matematicas/Vector3.o"
+	@echo "... src/Matematicas/Vector3.i"
+	@echo "... src/Matematicas/Vector3.s"
+	@echo "... src/Punto3D.o"
+	@echo "... src/Punto3D.i"
+	@echo "... src/Punto3D.s"
 	@echo "... src/glad.o"
 	@echo "... src/glad.i"
 	@echo "... src/glad.s"
