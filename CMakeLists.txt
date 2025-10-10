@@ -12,6 +12,10 @@ find_package(glfw3 REQUIRED)
 set(ARCHIVOS_FUENTE
     src/main.cpp
     src/glad.c
+    src/Matematicas/Vector3.cpp
+    src/Punto3D.cpp
+    src/Conexion.cpp
+    src/GestorPuntos.cpp
 )
 
 add_executable(Visualizador3D ${ARCHIVOS_FUENTE})    

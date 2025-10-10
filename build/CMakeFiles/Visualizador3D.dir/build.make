@@ -100,22 +100,86 @@ CMakeFiles/Visualizador3D.dir/src/glad.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/Visualizador3D.dir/src/glad.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/yordan/Documentos/C++/visualizador_3d/src/glad.c -o CMakeFiles/Visualizador3D.dir/src/glad.c.s
 
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o: CMakeFiles/Visualizador3D.dir/flags.make
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o: /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.cpp
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o: CMakeFiles/Visualizador3D.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o -MF CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o.d -o CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o -c /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.cpp
+
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.cpp > CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.i
+
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.cpp -o CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.s
+
+CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o: CMakeFiles/Visualizador3D.dir/flags.make
+CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o: /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.cpp
+CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o: CMakeFiles/Visualizador3D.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o -MF CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o.d -o CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o -c /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.cpp
+
+CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.cpp > CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.i
+
+CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.cpp -o CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.s
+
+CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o: CMakeFiles/Visualizador3D.dir/flags.make
+CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o: /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.cpp
+CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o: CMakeFiles/Visualizador3D.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o -MF CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o.d -o CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o -c /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.cpp
+
+CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.cpp > CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.i
+
+CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.cpp -o CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.s
+
+CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o: CMakeFiles/Visualizador3D.dir/flags.make
+CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o: /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.cpp
+CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o: CMakeFiles/Visualizador3D.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o -MF CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o.d -o CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o -c /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.cpp
+
+CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.cpp > CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.i
+
+CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.cpp -o CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.s
+
 # Object files for target Visualizador3D
 Visualizador3D_OBJECTS = \
 "CMakeFiles/Visualizador3D.dir/src/main.cpp.o" \
-"CMakeFiles/Visualizador3D.dir/src/glad.c.o"
+"CMakeFiles/Visualizador3D.dir/src/glad.c.o" \
+"CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o" \
+"CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o" \
+"CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o" \
+"CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o"
 
 # External object files for target Visualizador3D
 Visualizador3D_EXTERNAL_OBJECTS =
 
 Visualizador3D: CMakeFiles/Visualizador3D.dir/src/main.cpp.o
 Visualizador3D: CMakeFiles/Visualizador3D.dir/src/glad.c.o
+Visualizador3D: CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o
+Visualizador3D: CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o
+Visualizador3D: CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o
+Visualizador3D: CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o
 Visualizador3D: CMakeFiles/Visualizador3D.dir/build.make
 Visualizador3D: CMakeFiles/Visualizador3D.dir/compiler_depend.ts
 Visualizador3D: /usr/lib/libGL.so
 Visualizador3D: /usr/lib/libglfw.so.3.4
 Visualizador3D: CMakeFiles/Visualizador3D.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Visualizador3D"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/yordan/Documentos/C++/visualizador_3d/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Visualizador3D"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Visualizador3D.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
