@@ -99,7 +99,7 @@ int main(){
     }
 
     glfwMakeContextCurrent(ventana);
-    glfwSetFramebufferSizeCallback(ventana, ajustarVentana); //aqui no le paso argumentos por que no se llama a la funcion inmediatamente
+    glfwSetFramebufferSizeCallback(ventana, ajustarVentana);
 
     //inicializamos glad y veriricar que opengl funciona
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -141,7 +141,7 @@ int main(){
         0.0f,  0.0f,  1.0f   // Punto fin eje Z
     };
 
-    // CREAR BUFFERS PARA EJES (el código existente se mantiene)
+    // CREAR BUFFERS PARA EJES
     unsigned int VBOEjes, VAOEjes;
     glGenVertexArrays(1, &VAOEjes);
     glGenBuffers(1, &VBOEjes);
@@ -242,81 +242,38 @@ int main(){
             }
         }
 
-        // DIBUJAR PUNTOS
+        // DIBUJAR PUNTOS COMO PEQUEÑAS CRUCES
         if (!puntosActivos.empty()) {
-            // Preparar datos de vértices y colores para puntos
-            vector<float> verticesPuntos;
-            vector<float> coloresPuntos;
+            glUseProgram(shaderLineas);
             
             for (const auto& punto : puntosActivos) {
                 if (punto.estaActivo()) {
-                    // Posición
-                    verticesPuntos.push_back(punto.posicion.x);
-                    verticesPuntos.push_back(punto.posicion.y);
-                    verticesPuntos.push_back(punto.posicion.z);
+                    // Dibujar una pequeña cruz en cada posición de punto
+                    float tam = 0.02f; // Tamaño pequeño
+                    float x = punto.posicion.x;
+                    float y = punto.posicion.y;
+                    float z = punto.posicion.z;
                     
-                    // Color
-                    coloresPuntos.push_back(punto.color.x);
-                    coloresPuntos.push_back(punto.color.y);
-                    coloresPuntos.push_back(punto.color.z);
+                    float cruzVertices[] = {
+                        x-tam, y, z,    x+tam, y, z,   // Línea horizontal
+                        x, y-tam, z,    x, y+tam, z     // Línea vertical
+                    };
+                    
+                    glBindVertexArray(VAOConexiones);
+                    glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
+                    glBufferData(GL_ARRAY_BUFFER, sizeof(cruzVertices), cruzVertices, GL_DYNAMIC_DRAW);
+                    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+                    glEnableVertexAttribArray(0);
+                    
+                    // Usar el color del punto
+                    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 
+                            punto.color.x, punto.color.y, punto.color.z);
+                    glDrawArrays(GL_LINES, 0, 4);
                 }
             }
-
-            // DIBUJAR PUNTOS COMO PEQUEÑAS CRUCES
-            if (!puntosActivos.empty()) {
-                glUseProgram(shaderLineas);
-                
-                for (const auto& punto : puntosActivos) {
-                    if (punto.estaActivo()) {
-                        // Dibujar una pequeña cruz en cada posición de punto
-                        float tam = 0.02f; // Tamaño pequeño
-                        float x = punto.posicion.x;
-                        float y = punto.posicion.y;
-                        float z = punto.posicion.z;
-                        
-                        float cruzVertices[] = {
-                            x-tam, y, z,    x+tam, y, z,   // Línea horizontal
-                            x, y-tam, z,    x, y+tam, z     // Línea vertical
-                        };
-                        
-                        glBindVertexArray(VAOConexiones);
-                        glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
-                        glBufferData(GL_ARRAY_BUFFER, sizeof(cruzVertices), cruzVertices, GL_DYNAMIC_DRAW);
-                        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-                        glEnableVertexAttribArray(0);
-                        
-                        // Usar el color del punto
-                        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 
-                                punto.color.x, punto.color.y, punto.color.z);
-                        glDrawArrays(GL_LINES, 0, 4);
-                    }
-                }
-                glBindVertexArray(0);
-                
-                cout << "🔍 DEBUG: " << puntosActivos.size() << " puntos dibujados como cruces" << endl;
-            }
-
-            // Buffer de posiciones
-            glBindBuffer(GL_ARRAY_BUFFER, VBOPuntos);
-            glBufferData(GL_ARRAY_BUFFER, verticesPuntos.size() * sizeof(float), 
-                        verticesPuntos.data(), GL_DYNAMIC_DRAW);
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-            glEnableVertexAttribArray(0);
-            
-            // Buffer de colores
-            unsigned int VBOColores;
-            glGenBuffers(1, &VBOColores);
-            glBindBuffer(GL_ARRAY_BUFFER, VBOColores);
-            glBufferData(GL_ARRAY_BUFFER, coloresPuntos.size() * sizeof(float), 
-                        coloresPuntos.data(), GL_DYNAMIC_DRAW);
-            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-            glEnableVertexAttribArray(1);
-
-            // Dibujar todos los puntos
-            glDrawArrays(GL_POINTS, 0, puntosActivos.size());
-            
             glBindVertexArray(0);
-            glDeleteBuffers(1, &VBOColores);
+            
+            cout << "🔍 DEBUG: " << puntosActivos.size() << " puntos dibujados como cruces" << endl;
         }
 
         // Intercambiar buffers y procesar eventos
@@ -332,7 +289,7 @@ int main(){
     return 0;
 }
 
-void manejarInput(GLFWwindow *ventana){ //detecta cuando se preciona esc y marca la ventan para cerrarse
+void manejarInput(GLFWwindow *ventana){
     if (glfwGetKey(ventana, GLFW_KEY_ESCAPE) == GLFW_PRESS){
         glfwSetWindowShouldClose(ventana, true);
     }
