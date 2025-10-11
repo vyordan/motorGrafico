@@ -272,8 +272,6 @@ int main(){
                 }
             }
             glBindVertexArray(0);
-            
-            cout << "🔍 DEBUG: " << puntosActivos.size() << " puntos dibujados como cruces" << endl;
         }
 
         // Intercambiar buffers y procesar eventos
