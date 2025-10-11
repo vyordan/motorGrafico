@@ -149,4 +149,13 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: \
  /home/yordan/Documentos/C++/visualizador_3d/include/KHR/khrplatform.h \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h /usr/include/GLFW/glfw3.h
+ /usr/include/bits/stdint-least.h /usr/include/GLFW/glfw3.h \
+ /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.h \
+ /usr/include/c++/15.2.1/vector \
+ /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
+ /usr/include/c++/15.2.1/bits/stl_vector.h \
+ /usr/include/c++/15.2.1/bits/stl_bvector.h \
+ /usr/include/c++/15.2.1/bits/vector.tcc \
+ /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.h \
+ /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h \
+ /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.h
