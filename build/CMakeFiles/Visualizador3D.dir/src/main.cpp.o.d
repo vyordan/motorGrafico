@@ -150,12 +150,29 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: \
  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
  /usr/include/bits/stdint-least.h /usr/include/GLFW/glfw3.h \
- /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.h \
- /usr/include/c++/15.2.1/vector \
+ /usr/include/c++/15.2.1/sstream /usr/include/c++/15.2.1/bits/sstream.tcc \
+ /usr/include/c++/15.2.1/thread /usr/include/c++/15.2.1/bits/std_thread.h \
+ /usr/include/c++/15.2.1/bits/unique_ptr.h \
+ /usr/include/c++/15.2.1/bits/this_thread_sleep.h \
+ /usr/include/c++/15.2.1/bits/chrono.h /usr/include/c++/15.2.1/ratio \
+ /usr/include/c++/15.2.1/cstdint /usr/include/c++/15.2.1/limits \
+ /usr/include/c++/15.2.1/ctime \
+ /usr/include/c++/15.2.1/bits/parse_numbers.h \
+ /usr/include/c++/15.2.1/atomic \
+ /usr/include/c++/15.2.1/bits/atomic_base.h \
+ /usr/include/c++/15.2.1/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/15.2.1/mutex /usr/include/c++/15.2.1/bits/std_mutex.h \
+ /usr/include/c++/15.2.1/bits/unique_lock.h /usr/include/c++/15.2.1/queue \
+ /usr/include/c++/15.2.1/deque \
  /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
+ /usr/include/c++/15.2.1/bits/stl_deque.h \
+ /usr/include/c++/15.2.1/bits/deque.tcc /usr/include/c++/15.2.1/vector \
  /usr/include/c++/15.2.1/bits/stl_vector.h \
  /usr/include/c++/15.2.1/bits/stl_bvector.h \
  /usr/include/c++/15.2.1/bits/vector.tcc \
+ /usr/include/c++/15.2.1/bits/stl_heap.h \
+ /usr/include/c++/15.2.1/bits/stl_queue.h \
+ /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.h \
  /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.h \
  /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h \
  /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.h

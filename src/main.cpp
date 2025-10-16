@@ -1,10 +1,20 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <sstream>
+#include <thread> 
+#include <atomic>
+#include <thread>
+#include <mutex>
+#include <queue>
 #include "GestorPuntos.h" 
 #include "Punto3D.h"
 #include "Conexion.h"
 using namespace std;
+
+atomic<bool> consolaActiva{true};
+mutex mutexComandos;
+queue<string> colaComandos;
 
 //codigo de los haders como strings
 const char* codigoVertexLinea = R"glsl(
@@ -70,12 +80,17 @@ const char* codigoFragmentPunto = R"glsl(
     }
 )glsl";
 
+void mostrarMenu();
+void procesarComando(const string& comando, GestorPuntos& gestor);
+void procesarComandosPendientes(GestorPuntos& gestor);
+void hiloConsola();
 void manejarInput(GLFWwindow *ventana); //leer el teclado
 void ajustarVentana(GLFWwindow *ventana, int ancho, int alto); //redimencionar con el mouse
 unsigned int compilarShader(const char* codigoVertice, const char* codigoFragmento); // Función para compilar shaders desde strings
 
 const int ANCHO = 800;
 const int ALTO = 600;
+GLFWwindow *ventana; 
 
 int main(){
     cout<<"programa inicializado"<<endl;
@@ -90,7 +105,7 @@ int main(){
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     //creamos la ventana
-    GLFWwindow *ventana = glfwCreateWindow(ANCHO, ALTO, "Grafica3D - puntos", NULL, NULL);
+    ventana = glfwCreateWindow(ANCHO, ALTO, "Grafica3D - puntos", NULL, NULL);
 
     if(ventana == NULL) {
         cout <<"no se pudeo crear la ventana"<<endl;
@@ -117,14 +132,8 @@ int main(){
     }
 
     // CREAR GESTOR DE PUNTOS
+    mostrarMenu();
     GestorPuntos gestorPuntos;
-    //estos son puntos de prueba en lo que hacemos el input
-    gestorPuntos.agregarPunto(0.3f, 0.3f, 0.0f);  // P1 - arriba-derecha
-    gestorPuntos.agregarPunto(-0.3f, -0.3f, 0.0f); // P2 - abajo-izquierda  
-    gestorPuntos.agregarPunto(0.0f, 0.5f, 0.0f);   // P3 - arriba-centro
-    //estas son coneciones de prueba, todo esto vamos a hacer que se haga de manera temporal
-    gestorPuntos.conectarPuntos("P1", "P2");
-    gestorPuntos.conectarPuntos("P2", "P3");
 
     //  DATOS DE LOS EJES 3D (para referencia visual)
     float verticesEjes[] = {
@@ -171,15 +180,19 @@ int main(){
     glEnable(GL_POINT_SMOOTH);
 
     
-    cout<<"--MENU--"<<endl;
-    cout<<"ESC para salir"<<endl;
+    //cout<<"--MENU--"<<endl;
+    //cout<<"ESC para salir"<<endl;
+
+    thread threadConsola(hiloConsola);
 
     //este bucle nos sireve para mantener la ventana abierta (loop)
     while (!glfwWindowShouldClose(ventana)){ 
         manejarInput(ventana);
+
+        procesarComandosPendientes(gestorPuntos);
         
         // Limpiar la pantalla con el color de fondo
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT);        
 
         // ==================================================
         // DIBUJAR ESCENA COMPLETA
@@ -278,6 +291,7 @@ int main(){
         glfwSwapBuffers(ventana);
         glfwPollEvents();    
     }
+  
 
     //limpiar y salir
     glfwDestroyWindow(ventana);
@@ -349,3 +363,132 @@ unsigned int compilarShader(const char* codigoVertice, const char* codigoFragmen
     return shaderProgram;
 }
 
+void mostrarMenu() {
+    cout << "\n         COMANDOS" << endl;
+    cout << "a x y z - Agregar punto" << endl;
+    cout << "c - nombrePunto1 nombrePUnto2 - Conectar puntos" << endl;
+    cout << "l - Listar puntos" << endl;
+    cout << "d nombrePunto - Eliminar punto" << endl;
+    cout << "r - Reiniciar escena" << endl;
+    cout << "s - Salir del programa" << endl;
+    cout << "h - Mostrar este menu" << endl<<endl;
+}
+
+void procesarComando(const string& comando, GestorPuntos& gestor) {
+    stringstream ss(comando);
+    string accion;
+    ss >> accion;
+
+    if (accion == "a") {
+        float x, y, z;
+        if (ss >> x >> y >> z) {
+            gestor.agregarPunto(x, y, z);
+            cout << "Punto agregado en (" << x << ", " << y << ", " << z << ")" << endl;
+        } else {
+            cout << "Error: Formato incorrecto. Use: a x y z" << endl;
+        }
+    }
+    else if (accion == "c") {
+        string id1, id2;
+        if (ss >> id1 >> id2) {
+            if (gestor.conectarPuntos(id1, id2)) {
+                cout << "Conexion creada: " << id1 << " <-> " << id2 << endl;
+            } else {
+                cout << "Error: No se pudo crear la conexion" << endl;
+            }
+        } else {
+            cout << "Error: Formato incorrecto. Use: c id1 id2" << endl;
+        }
+    }
+    else if (accion == "l") {
+        gestor.listarPuntos();
+    }
+    else if (accion == "d") {
+        string id;
+        if (ss >> id) {
+            if (gestor.eliminarPunto(id)) {
+                cout << "Punto " << id << " eliminado" << endl;
+            } else {
+                cout << "Error: Punto no encontrado" << endl;
+            }
+        }
+    }
+    else if (accion == "r") {
+        // Implementar reinicio en GestorPuntos
+        cout << "Reiniciando escena..." << endl;
+    }
+    else if (accion == "h") {
+        mostrarMenu();
+    }
+    else if (accion == "s") {
+        cout << "Saliendo..." << endl;
+        exit(0);
+    }
+    else {
+        cout << "Comando desconocido. Use 'h' para ayuda." << endl;
+    }
+}
+
+void procesarComandosPendientes(GestorPuntos& gestor) {
+    lock_guard<mutex> lock(mutexComandos);
+    
+    while (!colaComandos.empty()) {
+        string comando = colaComandos.front();
+        colaComandos.pop();
+        
+        // Procesar el comando en el hilo principal
+        stringstream ss(comando);
+        string accion;
+        ss >> accion;
+
+        if (accion == "a") {
+            float x, y, z;
+            if (ss >> x >> y >> z) {
+                gestor.agregarPunto(x, y, z);
+            }
+        }
+        else if (accion == "c") {
+            string id1, id2;
+            if (ss >> id1 >> id2) {
+                gestor.conectarPuntos(id1, id2);
+            }
+        }
+        else if (accion == "l") {
+            gestor.listarPuntos();
+        }
+        else if (accion == "d") {
+            string id;
+            if (ss >> id) {
+                gestor.eliminarPunto(id);
+            }
+        }
+        else if (accion == "r") {
+            gestor.limpiarPuntos();
+            gestor.limpiarConexiones();
+        }
+        else if (accion == "h") {
+            mostrarMenu();
+        }
+        else if (accion == "s") {
+            consolaActiva = false;
+            // Necesitarás acceso a la ventana aquí - podemos hacerla global
+            glfwSetWindowShouldClose(ventana, true);
+        }
+    }
+}
+
+void hiloConsola() {
+    string comando;
+    
+    cout << "\nconsoloa activa" << endl;
+    mostrarMenu();
+    
+    while (consolaActiva) {
+        if (getline(cin, comando)) {
+            if (!comando.empty()) {
+                lock_guard<mutex> lock(mutexComandos);
+                colaComandos.push(comando);
+            }
+        }
+    }
+}

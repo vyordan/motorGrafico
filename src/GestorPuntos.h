@@ -28,6 +28,7 @@ public:
     int obtenerCantidadConexiones() const;
     std::vector<Punto3D> obtenerPuntosActivos() const;
     std::vector<Conexion> obtenerConexionesActivas() const;
+    void listarPuntos() const;
     
     // Utilidades
     int encontrarIndicePunto(const std::string& nombre) const;
