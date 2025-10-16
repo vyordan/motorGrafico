@@ -481,7 +481,6 @@ void hiloConsola() {
     string comando;
     
     cout << "\nconsoloa activa" << endl;
-    mostrarMenu();
     
     while (consolaActiva) {
         if (getline(cin, comando)) {
