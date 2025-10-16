@@ -133,3 +133,42 @@ string GestorPuntos::generarNombrePunto() {
     contadorPuntos++;
     return nombre;
 }
+
+// Listar todos los puntos activos
+void GestorPuntos::listarPuntos() const {
+    cout << "\n=== PUNTOS ACTIVOS ===" << endl;
+    if (puntos.empty()) {
+        cout << "No hay puntos en la escena" << endl;
+        return;
+    }
+    
+    int activos = 0;
+    for (size_t i = 0; i < puntos.size(); ++i) {
+        if (puntos[i].estaActivo()) {
+            cout << puntos[i].nombre << ": (" 
+                 << puntos[i].posicion.x << ", "
+                 << puntos[i].posicion.y << ", "
+                 << puntos[i].posicion.z << ")";
+            
+            // Mostrar conexiones de este punto
+            bool tieneConexiones = false;
+            for (const auto& conexion : conexiones) {
+                if (conexion.estaActiva() && 
+                    (conexion.idPuntoA == i || conexion.idPuntoB == i)) {
+                    if (!tieneConexiones) {
+                        cout << " - Conectado con: ";
+                        tieneConexiones = true;
+                    }
+                    int otroPunto = (conexion.idPuntoA == i) ? conexion.idPuntoB : conexion.idPuntoA;
+                    if (otroPunto < puntos.size() && puntos[otroPunto].estaActivo()) {
+                        cout << puntos[otroPunto].nombre << " ";
+                    }
+                }
+            }
+            cout << endl;
+            activos++;
+        }
+    }
+    cout << "Total: " << activos << " puntos activos, " 
+         << obtenerCantidadConexiones() << " conexiones" << endl;
+}
