@@ -217,9 +217,210 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o: /home/yordan/Documentos/C+
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
 
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.o: /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Matrix4.cpp \
+  /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Matrix4.h \
+  /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h \
+  /usr/include/alloca.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/c++/15.2.1/bit \
+  /usr/include/c++/15.2.1/bits/concept_check.h \
+  /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
+  /usr/include/c++/15.2.1/bits/exception_defines.h \
+  /usr/include/c++/15.2.1/bits/functexcept.h \
+  /usr/include/c++/15.2.1/bits/move.h \
+  /usr/include/c++/15.2.1/bits/predefined_ops.h \
+  /usr/include/c++/15.2.1/bits/ptr_traits.h \
+  /usr/include/c++/15.2.1/bits/requires_hosted.h \
+  /usr/include/c++/15.2.1/bits/specfun.h \
+  /usr/include/c++/15.2.1/bits/std_abs.h \
+  /usr/include/c++/15.2.1/bits/stl_algobase.h \
+  /usr/include/c++/15.2.1/bits/stl_iterator.h \
+  /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h \
+  /usr/include/c++/15.2.1/bits/stl_pair.h \
+  /usr/include/c++/15.2.1/bits/utility.h \
+  /usr/include/c++/15.2.1/bits/version.h \
+  /usr/include/c++/15.2.1/cmath \
+  /usr/include/c++/15.2.1/concepts \
+  /usr/include/c++/15.2.1/debug/assertions.h \
+  /usr/include/c++/15.2.1/debug/debug.h \
+  /usr/include/c++/15.2.1/ext/numeric_traits.h \
+  /usr/include/c++/15.2.1/ext/type_traits.h \
+  /usr/include/c++/15.2.1/limits \
+  /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/tr1/bessel_function.tcc \
+  /usr/include/c++/15.2.1/tr1/beta_function.tcc \
+  /usr/include/c++/15.2.1/tr1/ell_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/exp_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/gamma.tcc \
+  /usr/include/c++/15.2.1/tr1/hypergeometric.tcc \
+  /usr/include/c++/15.2.1/tr1/legendre_function.tcc \
+  /usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_hermite.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_laguerre.tcc \
+  /usr/include/c++/15.2.1/tr1/riemann_zeta.tcc \
+  /usr/include/c++/15.2.1/tr1/special_function_util.h \
+  /usr/include/c++/15.2.1/type_traits \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/endian.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/math.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdlib.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/types.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
+
 CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o: /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.cpp \
   /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h \
-  /usr/include/stdc-predef.h
+  /usr/include/alloca.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/c++/15.2.1/bit \
+  /usr/include/c++/15.2.1/bits/concept_check.h \
+  /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
+  /usr/include/c++/15.2.1/bits/exception_defines.h \
+  /usr/include/c++/15.2.1/bits/functexcept.h \
+  /usr/include/c++/15.2.1/bits/move.h \
+  /usr/include/c++/15.2.1/bits/predefined_ops.h \
+  /usr/include/c++/15.2.1/bits/ptr_traits.h \
+  /usr/include/c++/15.2.1/bits/requires_hosted.h \
+  /usr/include/c++/15.2.1/bits/specfun.h \
+  /usr/include/c++/15.2.1/bits/std_abs.h \
+  /usr/include/c++/15.2.1/bits/stl_algobase.h \
+  /usr/include/c++/15.2.1/bits/stl_iterator.h \
+  /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h \
+  /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h \
+  /usr/include/c++/15.2.1/bits/stl_pair.h \
+  /usr/include/c++/15.2.1/bits/utility.h \
+  /usr/include/c++/15.2.1/bits/version.h \
+  /usr/include/c++/15.2.1/cmath \
+  /usr/include/c++/15.2.1/concepts \
+  /usr/include/c++/15.2.1/debug/assertions.h \
+  /usr/include/c++/15.2.1/debug/debug.h \
+  /usr/include/c++/15.2.1/ext/numeric_traits.h \
+  /usr/include/c++/15.2.1/ext/type_traits.h \
+  /usr/include/c++/15.2.1/limits \
+  /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/tr1/bessel_function.tcc \
+  /usr/include/c++/15.2.1/tr1/beta_function.tcc \
+  /usr/include/c++/15.2.1/tr1/ell_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/exp_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/gamma.tcc \
+  /usr/include/c++/15.2.1/tr1/hypergeometric.tcc \
+  /usr/include/c++/15.2.1/tr1/legendre_function.tcc \
+  /usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_hermite.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_laguerre.tcc \
+  /usr/include/c++/15.2.1/tr1/riemann_zeta.tcc \
+  /usr/include/c++/15.2.1/tr1/special_function_util.h \
+  /usr/include/c++/15.2.1/type_traits \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/os_defines.h \
+  /usr/include/endian.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/math.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdlib.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/types.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
 
 CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o: /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.cpp \
   /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h \
@@ -439,6 +640,7 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: /home/yordan/Documentos/C++/visual
   /home/yordan/Documentos/C++/visualizador_3d/include/glad/glad.h \
   /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.h \
   /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.h \
+  /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Matrix4.h \
   /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h \
   /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.h \
   /usr/include/GLFW/glfw3.h \
@@ -462,9 +664,19 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: /home/yordan/Documentos/C++/visual
   /usr/include/bits/errno.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/flt-eval-method.h \
+  /usr/include/bits/fp-fast.h \
+  /usr/include/bits/fp-logb.h \
+  /usr/include/bits/iscanonical.h \
   /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/libm-simd-decl-stubs.h \
   /usr/include/bits/locale.h \
   /usr/include/bits/long-double.h \
+  /usr/include/bits/math-vector.h \
+  /usr/include/bits/mathcalls-helper-functions.h \
+  /usr/include/bits/mathcalls-macros.h \
+  /usr/include/bits/mathcalls-narrow.h \
+  /usr/include/bits/mathcalls.h \
   /usr/include/bits/pthread_stack_min-dynamic.h \
   /usr/include/bits/pthreadtypes-arch.h \
   /usr/include/bits/pthreadtypes.h \
@@ -563,6 +775,7 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: /home/yordan/Documentos/C++/visual
   /usr/include/c++/15.2.1/bits/range_access.h \
   /usr/include/c++/15.2.1/bits/refwrap.h \
   /usr/include/c++/15.2.1/bits/requires_hosted.h \
+  /usr/include/c++/15.2.1/bits/specfun.h \
   /usr/include/c++/15.2.1/bits/sstream.tcc \
   /usr/include/c++/15.2.1/bits/std_abs.h \
   /usr/include/c++/15.2.1/bits/std_mutex.h \
@@ -595,6 +808,7 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: /home/yordan/Documentos/C++/visual
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
   /usr/include/c++/15.2.1/clocale \
+  /usr/include/c++/15.2.1/cmath \
   /usr/include/c++/15.2.1/concepts \
   /usr/include/c++/15.2.1/cstddef \
   /usr/include/c++/15.2.1/cstdint \
@@ -631,6 +845,18 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: /home/yordan/Documentos/C++/visual
   /usr/include/c++/15.2.1/string_view \
   /usr/include/c++/15.2.1/system_error \
   /usr/include/c++/15.2.1/thread \
+  /usr/include/c++/15.2.1/tr1/bessel_function.tcc \
+  /usr/include/c++/15.2.1/tr1/beta_function.tcc \
+  /usr/include/c++/15.2.1/tr1/ell_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/exp_integral.tcc \
+  /usr/include/c++/15.2.1/tr1/gamma.tcc \
+  /usr/include/c++/15.2.1/tr1/hypergeometric.tcc \
+  /usr/include/c++/15.2.1/tr1/legendre_function.tcc \
+  /usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_hermite.tcc \
+  /usr/include/c++/15.2.1/tr1/poly_laguerre.tcc \
+  /usr/include/c++/15.2.1/tr1/riemann_zeta.tcc \
+  /usr/include/c++/15.2.1/tr1/special_function_util.h \
   /usr/include/c++/15.2.1/tuple \
   /usr/include/c++/15.2.1/type_traits \
   /usr/include/c++/15.2.1/typeinfo \
@@ -659,6 +885,7 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o: /home/yordan/Documentos/C++/visual
   /usr/include/linux/stddef.h \
   /usr/include/linux/types.h \
   /usr/include/locale.h \
+  /usr/include/math.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
@@ -702,13 +929,12 @@ Visualizador3D: /usr/lib/Scrt1.o \
   /usr/lib/libxcb.so.1 \
   CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o \
+  CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/glad.c.o \
   CMakeFiles/Visualizador3D.dir/src/main.cpp.o
 
-
-CMakeFiles/Visualizador3D.dir/src/main.cpp.o:
 
 CMakeFiles/Visualizador3D.dir/src/glad.c.o:
 
@@ -746,9 +972,37 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
 
-/usr/include/c++/15.2.1/bits/stl_function.h:
+/usr/lib/libm.so:
 
-/usr/include/c++/15.2.1/bits/invoke.h:
+/usr/lib/libgcc_s.so.1:
+
+/usr/lib/crti.o:
+
+/usr/lib/Scrt1.o:
+
+/usr/include/c++/15.2.1/thread:
+
+/usr/include/c++/15.2.1/sstream:
+
+/usr/include/c++/15.2.1/deque:
+
+/usr/include/c++/15.2.1/cstdint:
+
+/usr/include/c++/15.2.1/bits/unique_ptr.h:
+
+/usr/include/c++/15.2.1/bits/unique_lock.h:
+
+/usr/include/c++/15.2.1/bits/stl_deque.h:
+
+/usr/include/c++/15.2.1/bits/std_mutex.h:
+
+/usr/include/c++/15.2.1/bits/sstream.tcc:
+
+/usr/include/c++/15.2.1/bits/deque.tcc:
+
+/usr/include/c++/15.2.1/bits/chrono.h:
+
+/usr/include/c++/15.2.1/bits/stl_function.h:
 
 /usr/lib/libxcb.so.1:
 
@@ -762,9 +1016,19 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/c++/15.2.1/bits/refwrap.h:
 
+/usr/include/c++/15.2.1/bits/invoke.h:
+
+/usr/include/math.h:
+
 /usr/include/c++/15.2.1/bits/postypes.h:
 
 /usr/include/c++/15.2.1/bits/ostream_insert.h:
+
+/usr/include/c++/15.2.1/queue:
+
+/usr/include/c++/15.2.1/bits/ptr_traits.h:
+
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.o:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/error_constants.h:
 
@@ -788,12 +1052,6 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/c++/15.2.1/bits/exception_ptr.h:
 
-/usr/include/c++/15.2.1/bits/ptr_traits.h:
-
-/usr/include/c++/15.2.1/queue:
-
-/usr/include/c++/15.2.1/bits/exception.h:
-
 /usr/include/c++/15.2.1/bits/cpp_type_traits.h:
 
 /usr/include/c++/15.2.1/bits/cxxabi_init_exception.h:
@@ -806,8 +1064,6 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/time.h:
 
-/usr/include/c++/15.2.1/bits/charconv.h:
-
 /usr/include/c++/15.2.1/bits/std_abs.h:
 
 /usr/include/linux/types.h:
@@ -815,6 +1071,8 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 /usr/include/c++/15.2.1/bits/basic_ios.tcc:
 
 /usr/include/c++/15.2.1/cerrno:
+
+/usr/include/bits/libm-simd-decl-stubs.h:
 
 /usr/include/c++/15.2.1/bits/localefwd.h:
 
@@ -842,6 +1100,10 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/c++/15.2.1/bits/char_traits.h:
 
+/usr/include/c++/15.2.1/bits/exception.h:
+
+/usr/include/bits/math-vector.h:
+
 /usr/include/bits/types/struct_tm.h:
 
 /usr/include/c++/15.2.1/ext/atomicity.h:
@@ -855,8 +1117,6 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 /usr/include/ctype.h:
 
 /usr/include/bits/types/struct_sched_param.h:
-
-/usr/include/c++/15.2.1/bits/functexcept.h:
 
 /usr/include/c++/15.2.1/streambuf:
 
@@ -880,7 +1140,15 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/c++/15.2.1/ostream:
 
+/usr/include/c++/15.2.1/ratio:
+
+/usr/include/bits/floatn-common.h:
+
 /usr/include/bits/errno.h:
+
+/usr/include/c++/15.2.1/ctime:
+
+/usr/include/bits/timex.h:
 
 /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.cpp:
 
@@ -892,9 +1160,11 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/bits/endianness.h:
 
-/usr/include/c++/15.2.1/bits/std_mutex.h:
+/usr/include/c++/15.2.1/bits/parse_numbers.h:
 
-/usr/lib/crti.o:
+/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h:
+
+/usr/include/c++/15.2.1/tr1/ell_integral.tcc:
 
 /usr/include/c++/15.2.1/limits:
 
@@ -904,7 +1174,15 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/bits/struct_mutex.h:
 
+/usr/lib/libc.so:
+
+/usr/include/bits/pthreadtypes.h:
+
+/usr/include/c++/15.2.1/tr1/beta_function.tcc:
+
 /usr/include/bits/byteswap.h:
+
+/usr/include/c++/15.2.1/tr1/special_function_util.h:
 
 /usr/include/bits/time64.h:
 
@@ -913,10 +1191,6 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/ctype_base.h:
 
 /usr/include/bits/types/locale_t.h:
-
-/usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/atomic_word.h:
-
-/usr/include/c++/15.2.1/bits/parse_numbers.h:
 
 /usr/include/c++/15.2.1/bits/allocator.h:
 
@@ -938,11 +1212,17 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/asm-generic/errno-base.h:
 
+/usr/include/c++/15.2.1/bits/std_thread.h:
+
+/usr/include/bits/types/struct_FILE.h:
+
 /usr/include/asm/types.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h:
 
 /usr/include/asm-generic/int-ll64.h:
+
+/usr/include/bits/mathcalls-macros.h:
 
 /usr/include/c++/15.2.1/bit:
 
@@ -950,13 +1230,7 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /usr/include/bits/types/clock_t.h:
 
-/usr/include/bits/types/__fpos_t.h:
-
 /home/yordan/Documentos/C++/visualizador_3d/src/Conexion.cpp:
-
-/usr/include/bits/types/timer_t.h:
-
-/usr/lib/Scrt1.o:
 
 /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h:
 
@@ -968,13 +1242,13 @@ CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o:
 
 /home/yordan/Documentos/C++/visualizador_3d/src/Punto3D.h:
 
+/usr/include/bits/fp-logb.h:
+
 /usr/include/asm-generic/posix_types.h:
 
 /usr/include/stdc-predef.h:
 
 /usr/include/c++/15.2.1/bits/locale_classes.tcc:
-
-/usr/include/c++/15.2.1/bits/unique_lock.h:
 
 CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o:
 
@@ -987,6 +1261,10 @@ CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o:
 /home/yordan/Documentos/C++/visualizador_3d/src/GestorPuntos.h:
 
 /usr/include/gnu/stubs.h:
+
+/usr/lib/crtn.o:
+
+/usr/include/c++/15.2.1/bits/functional_hash.h:
 
 /usr/include/bits/types/cookie_io_functions_t.h:
 
@@ -1024,6 +1302,8 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/bits/types.h:
 
+/usr/include/bits/flt-eval-method.h:
+
 /usr/include/bits/sched.h:
 
 /usr/include/features.h:
@@ -1032,17 +1312,27 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/bits/types/__locale_t.h:
 
-/usr/include/c++/15.2.1/bits/sstream.tcc:
-
 /usr/include/c++/15.2.1/bits/stl_iterator.h:
 
 /usr/include/bits/atomic_wide_counter.h:
+
+/home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Matrix4.cpp:
 
 /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h:
 
 /usr/include/asm-generic/errno.h:
 
 /usr/include/c++/15.2.1/bits/stl_vector.h:
+
+/usr/include/c++/15.2.1/bits/stl_heap.h:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/asm-generic/types.h:
+
+/home/yordan/Documentos/C++/visualizador_3d/src/glad.c:
+
+/usr/include/c++/15.2.1/exception:
 
 /usr/include/c++/15.2.1/tuple:
 
@@ -1062,6 +1352,8 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/c++/15.2.1/bits/uses_allocator.h:
 
+/usr/include/c++/15.2.1/tr1/hypergeometric.tcc:
+
 /usr/include/c++/15.2.1/bits/basic_string.h:
 
 /usr/include/c++/15.2.1/bits/uses_allocator_args.h:
@@ -1080,6 +1372,12 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/wchar.h:
 
+/usr/lib/libgcc_s.so:
+
+/home/yordan/Documentos/C++/visualizador_3d/include/KHR/khrplatform.h:
+
+/usr/include/c++/15.2.1/cstddef:
+
 /usr/include/c++/15.2.1/cstdlib:
 
 /usr/include/asm/errno.h:
@@ -1092,13 +1390,23 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/c++/15.2.1/istream:
 
+/usr/include/c++/15.2.1/tr1/poly_laguerre.tcc:
+
 /usr/include/strings.h:
 
 /usr/include/c++/15.2.1/debug/assertions.h:
 
 /usr/include/c++/15.2.1/new:
 
+/usr/include/c++/15.2.1/mutex:
+
+/usr/include/c++/15.2.1/ext/alloc_traits.h:
+
 /usr/include/c++/15.2.1/ext/numeric_traits.h:
+
+/usr/include/c++/15.2.1/bits/this_thread_sleep.h:
+
+/usr/include/c++/15.2.1/ext/type_traits.h:
 
 /usr/include/c++/15.2.1/initializer_list:
 
@@ -1107,6 +1415,12 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 /usr/include/bits/types/struct_timeval.h:
 
 /usr/include/c++/15.2.1/iosfwd:
+
+/usr/include/c++/15.2.1/bits/stl_queue.h:
+
+/usr/include/bits/mathcalls.h:
+
+/usr/include/c++/15.2.1/iostream:
 
 /usr/include/c++/15.2.1/stdexcept:
 
@@ -1144,8 +1458,6 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/linux/errno.h:
 
-/usr/include/c++/15.2.1/bits/stl_deque.h:
-
 /usr/include/bits/types/FILE.h:
 
 /usr/include/c++/15.2.1/bits/utility.h:
@@ -1159,10 +1471,6 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 /usr/include/c++/15.2.1/bits/stl_uninitialized.h:
 
 /usr/include/pthread.h:
-
-/usr/include/wctype.h:
-
-/usr/include/sched.h:
 
 /usr/include/bits/wordsize.h:
 
@@ -1178,6 +1486,48 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/sys/single_threaded.h:
 
+/usr/include/c++/15.2.1/bits/functexcept.h:
+
+/home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Matrix4.h:
+
+/usr/include/wctype.h:
+
+/usr/include/sched.h:
+
+/usr/include/bits/fp-fast.h:
+
+/usr/include/bits/iscanonical.h:
+
+/usr/include/c++/15.2.1/bits/charconv.h:
+
+/usr/include/bits/mathcalls-helper-functions.h:
+
+/usr/include/string.h:
+
+/usr/include/bits/mathcalls-narrow.h:
+
+/usr/include/c++/15.2.1/bits/specfun.h:
+
+/usr/include/c++/15.2.1/tr1/bessel_function.tcc:
+
+CMakeFiles/Visualizador3D.dir/src/main.cpp.o:
+
+/usr/include/c++/15.2.1/tr1/exp_integral.tcc:
+
+/usr/include/c++/15.2.1/tr1/gamma.tcc:
+
+/usr/include/c++/15.2.1/tr1/legendre_function.tcc:
+
+/usr/include/c++/15.2.1/tr1/modified_bessel_func.tcc:
+
+/usr/include/bits/types/timer_t.h:
+
+/usr/include/c++/15.2.1/tr1/poly_hermite.tcc:
+
+/usr/include/bits/types/__fpos_t.h:
+
+/usr/include/c++/15.2.1/tr1/riemann_zeta.tcc:
+
 /usr/include/c++/15.2.1/bits/streambuf.tcc:
 
 /usr/include/bits/cpu-set.h:
@@ -1186,84 +1536,18 @@ CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o:
 
 /usr/include/bits/stdint-least.h:
 
-/usr/include/asm-generic/bitsperlong.h:
-
-/usr/include/asm-generic/types.h:
-
-/home/yordan/Documentos/C++/visualizador_3d/src/glad.c:
-
-/usr/include/c++/15.2.1/exception:
-
-/usr/include/c++/15.2.1/bits/stl_heap.h:
-
 /usr/include/dlfcn.h:
-
-/usr/include/c++/15.2.1/thread:
 
 /usr/include/endian.h:
 
+/usr/include/c++/15.2.1/cmath:
+
 /usr/include/stdint.h:
-
-/usr/include/string.h:
-
-/usr/include/c++/15.2.1/ext/alloc_traits.h:
-
-/usr/include/c++/15.2.1/mutex:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h:
 
 /home/yordan/Documentos/C++/visualizador_3d/src/main.cpp:
 
-/usr/include/c++/15.2.1/iostream:
-
-/usr/include/c++/15.2.1/bits/stl_queue.h:
-
 /usr/include/c++/15.2.1/atomic:
 
 /usr/include/c++/15.2.1/bits/atomic_base.h:
-
-/usr/include/c++/15.2.1/bits/chrono.h:
-
-/usr/include/c++/15.2.1/bits/deque.tcc:
-
-/usr/include/bits/types/struct_FILE.h:
-
-/usr/include/c++/15.2.1/bits/std_thread.h:
-
-/usr/include/c++/15.2.1/ext/type_traits.h:
-
-/usr/include/c++/15.2.1/bits/this_thread_sleep.h:
-
-/usr/include/c++/15.2.1/bits/unique_ptr.h:
-
-/usr/include/c++/15.2.1/cstdint:
-
-/usr/include/bits/timex.h:
-
-/usr/include/c++/15.2.1/ctime:
-
-/usr/include/c++/15.2.1/deque:
-
-/usr/include/bits/floatn-common.h:
-
-/usr/include/c++/15.2.1/ratio:
-
-/usr/include/c++/15.2.1/sstream:
-
-/usr/include/c++/15.2.1/bits/functional_hash.h:
-
-/usr/lib/crtn.o:
-
-/usr/include/bits/pthreadtypes.h:
-
-/usr/lib/libc.so:
-
-/home/yordan/Documentos/C++/visualizador_3d/include/KHR/khrplatform.h:
-
-/usr/include/c++/15.2.1/cstddef:
-
-/usr/lib/libgcc_s.so:
-
-/usr/lib/libgcc_s.so.1:
-
-/usr/lib/libm.so:

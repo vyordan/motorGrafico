@@ -13,6 +13,7 @@ set(ARCHIVOS_FUENTE
     src/main.cpp
     src/glad.c
     src/Matematicas/Vector3.cpp
+    src/Matematicas/Matrix4.cpp
     src/Punto3D.cpp
     src/Conexion.cpp
     src/GestorPuntos.cpp
