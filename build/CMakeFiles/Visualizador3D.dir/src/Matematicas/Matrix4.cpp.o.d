@@ -1,6 +1,7 @@
-CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o: \
- /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.cpp \
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.o: \
+ /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Matrix4.cpp \
  /usr/include/stdc-predef.h \
+ /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Matrix4.h \
  /home/yordan/Documentos/C++/visualizador_3d/src/Matematicas/Vector3.h \
  /usr/include/c++/15.2.1/cmath \
  /usr/include/c++/15.2.1/bits/requires_hosted.h \

@@ -4,12 +4,14 @@
 #include <sstream>
 #include <thread> 
 #include <atomic>
-#include <thread>
 #include <mutex>
 #include <queue>
+#include <cmath> 
 #include "GestorPuntos.h" 
 #include "Punto3D.h"
 #include "Conexion.h"
+#include "Matematicas/Vector3.h"
+#include "Matematicas/Matrix4.h"
 using namespace std;
 
 atomic<bool> consolaActiva{true};
@@ -20,9 +22,12 @@ queue<string> colaComandos;
 const char* codigoVertexLinea = R"glsl(
     #version 330 core
     layout (location = 0) in vec3 aPos;
+    uniform mat4 view;
+    uniform mat4 projection;
+    
     void main()
     {
-        gl_Position = vec4(aPos, 1.0);
+        gl_Position = projection * view * vec4(aPos, 1.0);
     }
 )glsl";
 
@@ -42,12 +47,14 @@ const char* codigoVertexPunto = R"glsl(
     layout (location = 0) in vec3 aPos;
     layout (location = 1) in vec3 aColor;
     out vec3 colorPunto;
+    uniform mat4 view;
+    uniform mat4 projection;
 
     void main()
     {
         colorPunto = aColor;
-        gl_Position = vec4(aPos, 1.0);
-        gl_PointSize = 35.0;
+        gl_Position = projection * view * vec4(aPos, 1.0);
+        gl_PointSize = 25.0;
     }
 )glsl";
 
@@ -58,28 +65,57 @@ const char* codigoFragmentPunto = R"glsl(
 
     void main()
     {
-        // Coordenadas normalizadas dentro del punto
         vec2 coord = gl_PointCoord * 2.0 - 1.0;
         float distancia = length(coord);
         
-        // Crear un círculo perfecto con bordes suaves
         if (distancia > 1.0) {
             discard;
         }
         
-        // Suavizado más pronunciado
         float suavizado = smoothstep(0.8, 1.0, distancia);
-        float alpha = 1.0 - suavizado * suavizado;  // Más suavizado en bordes
+        float alpha = 1.0 - suavizado * suavizado;
         
-        // Color final con transparencia en bordes
         FragColor = vec4(colorPunto, alpha);
         
-        // Opcional: agregar un pequeño brillo interior
         float brillo = 1.0 - (distancia * 0.5);
         FragColor.rgb += brillo * 0.1;
     }
 )glsl";
 
+struct Camera {
+    Vector3 posicion;
+    Vector3 objetivo;
+    Vector3 arriba;
+    float distancia;
+    float anguloX;
+    float anguloY;
+    
+    Camera() : posicion(0, 0, 3), objetivo(0, 0, 0), arriba(0, 1, 0), 
+               distancia(3.0f), anguloX(0), anguloY(0) {}
+    
+    void actualizar() {
+        posicion.x = objetivo.x + distancia * std::cos(anguloY) * std::sin(anguloX);
+        posicion.y = objetivo.y + distancia * std::sin(anguloY);
+        posicion.z = objetivo.z + distancia * std::cos(anguloY) * std::cos(anguloX);
+    }
+    
+    Matrix4 obtenerVista() {
+        return Matrix4::lookAt(posicion, objetivo, arriba);
+    }
+    
+    Matrix4 obtenerProyeccion() {
+        return Matrix4::perspective(45.0f, 800.0f/600.0f, 0.1f, 100.0f);
+    }
+};
+
+Camera camara;
+bool mouseBotonIzqPresionado = false;
+bool mouseBotonDerPresionado = false;
+double mouseXAnterior = 0, mouseYAnterior = 0;
+
+void callbackClickMouse(GLFWwindow* window, int button, int action, int mods) ;
+void callbackMovimientoMouse(GLFWwindow* window, double xpos, double ypos);
+void callbackRuedaMouse(GLFWwindow* window, double xoffset, double yoffset);
 void mostrarMenu();
 void procesarComando(const string& comando, GestorPuntos& gestor);
 void procesarComandosPendientes(GestorPuntos& gestor);
@@ -115,6 +151,10 @@ int main(){
 
     glfwMakeContextCurrent(ventana);
     glfwSetFramebufferSizeCallback(ventana, ajustarVentana);
+
+    glfwSetMouseButtonCallback(ventana, callbackClickMouse);
+    glfwSetCursorPosCallback(ventana, callbackMovimientoMouse);
+    glfwSetScrollCallback(ventana, callbackRuedaMouse);
 
     //inicializamos glad y veriricar que opengl funciona
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -187,110 +227,112 @@ int main(){
 
     //este bucle nos sireve para mantener la ventana abierta (loop)
     while (!glfwWindowShouldClose(ventana)){ 
-        manejarInput(ventana);
 
-        procesarComandosPendientes(gestorPuntos);
-        
-        // Limpiar la pantalla con el color de fondo
-        glClear(GL_COLOR_BUFFER_BIT);        
+    manejarInput(ventana);
+    procesarComandosPendientes(gestorPuntos);
+    
+    glClear(GL_COLOR_BUFFER_BIT);
 
-        // ==================================================
-        // DIBUJAR ESCENA COMPLETA
-        // ==================================================
+    // OBTENER MATRICES DE CÁMARA
+    Matrix4 vista = camara.obtenerVista();
+    Matrix4 proyeccion = camara.obtenerProyeccion();
 
-        // OBTENER DATOS ACTUALIZADOS DEL GESTOR
-        vector<Punto3D> puntosActivos = gestorPuntos.obtenerPuntosActivos();
-        vector<Conexion> conexionesActivas = gestorPuntos.obtenerConexionesActivas();
+    // OBTENER DATOS ACTUALIZADOS
+    vector<Punto3D> puntosActivos = gestorPuntos.obtenerPuntosActivos();
+    vector<Conexion> conexionesActivas = gestorPuntos.obtenerConexionesActivas();
 
-        // DIBUJAR EJES DE REFERENCIA
-        glUseProgram(shaderLineas);
-        glBindVertexArray(VAOEjes);
+    // DIBUJAR EJES DE REFERENCIA
+    glUseProgram(shaderLineas);
+    glBindVertexArray(VAOEjes);
+    
+    glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
+    glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
 
-        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 1.0f, 0.0f, 0.0f);
-        glDrawArrays(GL_LINES, 0, 2);  // Eje X
+    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 1.0f, 0.0f, 0.0f);
+    glDrawArrays(GL_LINES, 0, 2);  // Eje X
 
-        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 1.0f, 0.0f);
-        glDrawArrays(GL_LINES, 2, 2);  // Eje Y
+    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 1.0f, 0.0f);
+    glDrawArrays(GL_LINES, 2, 2);  // Eje Y
 
-        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 0.0f, 1.0f);
-        glDrawArrays(GL_LINES, 4, 2);  // Eje Z
+    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 0.0f, 1.0f);
+    glDrawArrays(GL_LINES, 4, 2);  // Eje Z
 
-        glBindVertexArray(0);
+    glBindVertexArray(0);
 
-        // DIBUJAR CONEXIONES ENTRE PUNTOS
-        if (!conexionesActivas.empty()) {
-            // Preparar datos de vértices para conexiones
-            vector<float> verticesConexiones;
-            for (const auto& conexion : conexionesActivas) {
-                if (conexion.estaActiva() && 
-                    conexion.idPuntoA < puntosActivos.size() && 
-                    conexion.idPuntoB < puntosActivos.size()) {
-                    
-                    // Punto A
-                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.x);
-                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.y);
-                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.z);
-                    
-                    // Punto B  
-                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.x);
-                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.y);
-                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.z);
-                }
-            }
-
-            // Dibujar conexiones si hay datos
-            if (!verticesConexiones.empty()) {
-                glUseProgram(shaderLineas);
-                glBindVertexArray(VAOConexiones);
-                glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
-                glBufferData(GL_ARRAY_BUFFER, verticesConexiones.size() * sizeof(float), 
-                            verticesConexiones.data(), GL_DYNAMIC_DRAW);
-                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-                glEnableVertexAttribArray(0);
-
-                glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.7f, 0.7f, 0.7f);
-                glDrawArrays(GL_LINES, 0, verticesConexiones.size() / 3);
-
-                glBindVertexArray(0);
+    // ==================================================
+    // DIBUJAR CONEXIONES ENTRE PUNTOS (FALTABA ESTO)
+    // ==================================================
+    if (!conexionesActivas.empty()) {
+        vector<float> verticesConexiones;
+        for (const auto& conexion : conexionesActivas) {
+            if (conexion.estaActiva() && 
+                conexion.idPuntoA < puntosActivos.size() && 
+                conexion.idPuntoB < puntosActivos.size()) {
+                
+                verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.x);
+                verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.y);
+                verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.z);
+                
+                verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.x);
+                verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.y);
+                verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.z);
             }
         }
 
-        // DIBUJAR PUNTOS COMO PEQUEÑAS CRUCES
-        if (!puntosActivos.empty()) {
+        if (!verticesConexiones.empty()) {
             glUseProgram(shaderLineas);
-            
-            for (const auto& punto : puntosActivos) {
-                if (punto.estaActivo()) {
-                    // Dibujar una pequeña cruz en cada posición de punto
-                    float tam = 0.02f; // Tamaño pequeño
-                    float x = punto.posicion.x;
-                    float y = punto.posicion.y;
-                    float z = punto.posicion.z;
-                    
-                    float cruzVertices[] = {
-                        x-tam, y, z,    x+tam, y, z,   // Línea horizontal
-                        x, y-tam, z,    x, y+tam, z     // Línea vertical
-                    };
-                    
-                    glBindVertexArray(VAOConexiones);
-                    glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
-                    glBufferData(GL_ARRAY_BUFFER, sizeof(cruzVertices), cruzVertices, GL_DYNAMIC_DRAW);
-                    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-                    glEnableVertexAttribArray(0);
-                    
-                    // Usar el color del punto
-                    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 
-                            punto.color.x, punto.color.y, punto.color.z);
-                    glDrawArrays(GL_LINES, 0, 4);
-                }
-            }
+            glBindVertexArray(VAOConexiones);
+            glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
+            glBufferData(GL_ARRAY_BUFFER, verticesConexiones.size() * sizeof(float), 
+                        verticesConexiones.data(), GL_DYNAMIC_DRAW);
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+            glEnableVertexAttribArray(0);
+
+            glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
+            glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
+            glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.7f, 0.7f, 0.7f);
+            glDrawArrays(GL_LINES, 0, verticesConexiones.size() / 3);
             glBindVertexArray(0);
         }
-
-        // Intercambiar buffers y procesar eventos
-        glfwSwapBuffers(ventana);
-        glfwPollEvents();    
     }
+
+    // ==================================================
+    // DIBUJAR PUNTOS
+    // ==================================================
+    if (!puntosActivos.empty()) {
+        glUseProgram(shaderLineas);
+        
+        for (const auto& punto : puntosActivos) {
+            if (punto.estaActivo()) {
+                float tam = 0.02f;
+                float x = punto.posicion.x;
+                float y = punto.posicion.y;
+                float z = punto.posicion.z;
+                
+                float cruzVertices[] = {
+                    x-tam, y, z, x+tam, y, z,
+                    x, y-tam, z, x, y+tam, z
+                };
+                
+                glBindVertexArray(VAOConexiones);
+                glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
+                glBufferData(GL_ARRAY_BUFFER, sizeof(cruzVertices), cruzVertices, GL_DYNAMIC_DRAW);
+                glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+                glEnableVertexAttribArray(0);
+                
+                glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
+                glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
+                glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 
+                          punto.color.x, punto.color.y, punto.color.z);
+                glDrawArrays(GL_LINES, 0, 4);
+            }
+        }
+        glBindVertexArray(0);
+    }
+
+    glfwSwapBuffers(ventana);
+    glfwPollEvents();    
+}
   
 
     //limpiar y salir
@@ -366,9 +408,9 @@ unsigned int compilarShader(const char* codigoVertice, const char* codigoFragmen
 void mostrarMenu() {
     cout << "\n         COMANDOS" << endl;
     cout << "a x y z - Agregar punto" << endl;
-    cout << "c - nombrePunto1 nombrePUnto2 - Conectar puntos" << endl;
+    cout << "c Pid1 Pid2 - Conectar puntos" << endl;
     cout << "l - Listar puntos" << endl;
-    cout << "d nombrePunto - Eliminar punto" << endl;
+    cout << "d Pid - Eliminar punto" << endl;
     cout << "r - Reiniciar escena" << endl;
     cout << "s - Salir del programa" << endl;
     cout << "h - Mostrar este menu" << endl<<endl;
@@ -480,8 +522,6 @@ void procesarComandosPendientes(GestorPuntos& gestor) {
 void hiloConsola() {
     string comando;
     
-    cout << "\nconsoloa activa" << endl;
-    
     while (consolaActiva) {
         if (getline(cin, comando)) {
             if (!comando.empty()) {
@@ -490,4 +530,42 @@ void hiloConsola() {
             }
         }
     }
+}
+
+void callbackClickMouse(GLFWwindow* window, int button, int action, int mods) {
+    if (button == GLFW_MOUSE_BUTTON_LEFT) {
+        mouseBotonIzqPresionado = (action == GLFW_PRESS);
+        if (action == GLFW_PRESS) {
+            glfwGetCursorPos(window, &mouseXAnterior, &mouseYAnterior);
+        }
+    }
+}
+
+void callbackMovimientoMouse(GLFWwindow* window, double xpos, double ypos) {
+    if (mouseBotonIzqPresionado) {
+        // ROTACIÓN con sensibilidad
+        float sensitivity = 0.01f;
+        camara.anguloX += (xpos - mouseXAnterior) * sensitivity;
+        camara.anguloY += (ypos - mouseYAnterior) * sensitivity;
+        
+        // Limitar ángulo vertical para evitar voltear
+        if (camara.anguloY > 1.4f) camara.anguloY = 1.4f;
+        if (camara.anguloY < -1.4f) camara.anguloY = -1.4f;
+        
+        camara.actualizar();
+    }
+    
+    mouseXAnterior = xpos;
+    mouseYAnterior = ypos;
+}
+
+void callbackRuedaMouse(GLFWwindow* window, double xoffset, double yoffset) {
+    // ZOOM con rueda del mouse
+    camara.distancia -= yoffset * 0.5f;
+    
+    // Limitar distancia
+    if (camara.distancia < 1.0f) camara.distancia = 1.0f;
+    if (camara.distancia > 20.0f) camara.distancia = 20.0f;
+    
+    camara.actualizar();
 }

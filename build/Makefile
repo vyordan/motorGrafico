@@ -177,6 +177,30 @@ src/GestorPuntos.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.s
 .PHONY : src/GestorPuntos.cpp.s
 
+src/Matematicas/Matrix4.o: src/Matematicas/Matrix4.cpp.o
+.PHONY : src/Matematicas/Matrix4.o
+
+# target to build an object file
+src/Matematicas/Matrix4.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.o
+.PHONY : src/Matematicas/Matrix4.cpp.o
+
+src/Matematicas/Matrix4.i: src/Matematicas/Matrix4.cpp.i
+.PHONY : src/Matematicas/Matrix4.i
+
+# target to preprocess a source file
+src/Matematicas/Matrix4.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.i
+.PHONY : src/Matematicas/Matrix4.cpp.i
+
+src/Matematicas/Matrix4.s: src/Matematicas/Matrix4.cpp.s
+.PHONY : src/Matematicas/Matrix4.s
+
+# target to generate assembly for a file
+src/Matematicas/Matrix4.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Visualizador3D.dir/build.make CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.s
+.PHONY : src/Matematicas/Matrix4.cpp.s
+
 src/Matematicas/Vector3.o: src/Matematicas/Vector3.cpp.o
 .PHONY : src/Matematicas/Vector3.o
 
@@ -288,6 +312,9 @@ help:
 	@echo "... src/GestorPuntos.o"
 	@echo "... src/GestorPuntos.i"
 	@echo "... src/GestorPuntos.s"
+	@echo "... src/Matematicas/Matrix4.o"
+	@echo "... src/Matematicas/Matrix4.i"
+	@echo "... src/Matematicas/Matrix4.s"
 	@echo "... src/Matematicas/Vector3.o"
 	@echo "... src/Matematicas/Vector3.i"
 	@echo "... src/Matematicas/Vector3.s"

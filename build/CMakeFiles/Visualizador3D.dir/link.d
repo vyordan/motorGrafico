@@ -5,6 +5,7 @@ Visualizador3D: \
   CMakeFiles/Visualizador3D.dir/src/main.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/glad.c.o \
   CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o \
+  CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/Conexion.cpp.o \
   CMakeFiles/Visualizador3D.dir/src/GestorPuntos.cpp.o \
@@ -55,6 +56,8 @@ CMakeFiles/Visualizador3D.dir/src/main.cpp.o:
 CMakeFiles/Visualizador3D.dir/src/glad.c.o:
 
 CMakeFiles/Visualizador3D.dir/src/Matematicas/Vector3.cpp.o:
+
+CMakeFiles/Visualizador3D.dir/src/Matematicas/Matrix4.cpp.o:
 
 CMakeFiles/Visualizador3D.dir/src/Punto3D.cpp.o:
 
