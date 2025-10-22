@@ -174,20 +174,26 @@ int main(){
     // CREAR GESTOR DE PUNTOS
     mostrarMenu();
     GestorPuntos gestorPuntos;
+    
+
+    ///* 
+  
+    //*/                                     
+
 
     //  DATOS DE LOS EJES 3D (para referencia visual)
     float verticesEjes[] = {
         // Eje X (Rojo) - de -1 a +1 en X
-        -1.0f,  0.0f,  0.0f,  // Punto inicio eje X
-        1.0f,  0.0f,  0.0f,  // Punto fin eje X
+        -5.0f,  0.0f,  0.0f,  // Punto inicio eje X
+        5.0f,  0.0f,  0.0f,  // Punto fin eje X
         
         // Eje Y (Verde) - de -1 a +1 en Y
-        0.0f, -1.0f,  0.0f,  // Punto inicio eje Y
-        0.0f,  1.0f,  0.0f,  // Punto fin eje Y
+        0.0f, -5.0f,  0.0f,  // Punto inicio eje Y
+        0.0f,  5.0f,  0.0f,  // Punto fin eje Y
         
         // Eje Z (Azul) - de -1 a +1 en Z  
-        0.0f,  0.0f, -1.0f,  // Punto inicio eje Z
-        0.0f,  0.0f,  1.0f   // Punto fin eje Z
+        0.0f,  0.0f, -5.0f,  // Punto inicio eje Z
+        0.0f,  0.0f,  5.0f   // Punto fin eje Z
     };
 
     // CREAR BUFFERS PARA EJES
