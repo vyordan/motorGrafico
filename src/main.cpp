@@ -235,6 +235,7 @@ int main(){
     GestorPuntos gestorPuntos;
     
     ///*
+    
   
     //*/                                     
 
