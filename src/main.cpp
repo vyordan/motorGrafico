@@ -171,12 +171,22 @@ int main(){
         return -1;
     }
 
+    //para mostrar la informacion de los datos
+    const GLubyte* renderer = glGetString(GL_RENDERER);
+    const GLubyte* version = glGetString(GL_VERSION);
+    const GLubyte* glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+
+    cout << "\n=== INFORMACIÓN OPENGL ===" << endl;
+    cout << "Renderer: " << renderer << endl;
+    cout << "OpenGL version: " << version << endl;
+    cout << "GLSL version: " << glslVersion << endl;
+    cout << "=========================" << endl;
+
     // CREAR GESTOR DE PUNTOS
     mostrarMenu();
     GestorPuntos gestorPuntos;
     
-
-    ///* 
+    ///*
   
     //*/                                     
 
