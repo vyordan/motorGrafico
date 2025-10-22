@@ -5,13 +5,13 @@ Punto3D::Punto3D(const std::string& nombre, float x, float y, float z)
 
 
     if (nombre == "P1") {
-        color = Vector3(1.0f, 0.0f, 0.0f);  // Rojo
+        color = Vector3(1.0f, 0.5f, 0.0f);  // Anaranjado
     } else if (nombre == "P2") {
-        color = Vector3(0.0f, 1.0f, 0.0f);  // Verde
-    } else if (nombre == "P3") {
         color = Vector3(0.0f, 0.0f, 1.0f);  // Azul
+    } else if (nombre == "P3") {
+        color = Vector3(0.0f, 1.0f, 0.0f);  // Verde
     } else {
-        color = Vector3(1.0f, 1.0f, 0.0f);  // Amarillo por defecto todo slos que se ingresen despues del numero 3
+        color = Vector3(1.0f, 1.0f, 0.0f);  // Amarillo ppara el resto
     }
 }
 
