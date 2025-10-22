@@ -3,6 +3,7 @@
 Motor gráfico 3D desarrollado en C++/OpenGL para visualizar estructuras matemáticas.
 
 **Tecnologías:** OpenGL 4.6 • C++17 • GLFW • CMake
+
 **Características:** Renderizado 3D • Cámara orbital • Consola interactiva • Matemáticas 3D
 
 
@@ -43,3 +44,4 @@ make
 ```
 
 ![capturaMotorGrafico](https://github.com/vyordan/motorGrafico/blob/master/capturas/2025-10-22_03-51-01.png)
+![capturaMotorGrafico](https://github.com/vyordan/motorGrafico/blob/master/capturas/2025-10-22_00-59-19.png)
