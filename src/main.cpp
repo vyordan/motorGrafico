@@ -82,6 +82,27 @@ const char* codigoFragmentPunto = R"glsl(
     }
 )glsl";
 
+const char* codigoVertexGrid = R"glsl(
+    #version 330 core
+    layout (location = 0) in vec3 aPos;
+    uniform mat4 view;
+    uniform mat4 projection;
+    void main()
+    {
+        gl_Position = projection * view * vec4(aPos, 1.0);
+    }
+)glsl";
+
+const char* codigoFragmentGrid = R"glsl(
+    #version 330 core
+    out vec4 FragColor;
+    uniform vec3 colorGrid;
+    void main()
+    {
+        FragColor = vec4(colorGrid, 0.15);  // Muy transparente
+    }
+)glsl";
+
 struct Camera {
     Vector3 posicion;
     Vector3 objetivo;
@@ -113,6 +134,11 @@ bool mouseBotonIzqPresionado = false;
 bool mouseBotonDerPresionado = false;
 double mouseXAnterior = 0, mouseYAnterior = 0;
 
+bool mostrarGrid = true;
+unsigned int shaderGrid;
+unsigned int VBOGrid, VAOGrid;
+
+
 void callbackClickMouse(GLFWwindow* window, int button, int action, int mods) ;
 void callbackMovimientoMouse(GLFWwindow* window, double xpos, double ypos);
 void callbackRuedaMouse(GLFWwindow* window, double xoffset, double yoffset);
@@ -123,6 +149,7 @@ void hiloConsola();
 void manejarInput(GLFWwindow *ventana); //leer el teclado
 void ajustarVentana(GLFWwindow *ventana, int ancho, int alto); //redimencionar con el mouse
 unsigned int compilarShader(const char* codigoVertice, const char* codigoFragmento); // Función para compilar shaders desde strings
+vector<float> generarVerticesGrid();
 
 const int ANCHO = 800;
 const int ALTO = 600;
@@ -165,11 +192,32 @@ int main(){
     //COMPILAR SHADERS
     unsigned int shaderLineas = compilarShader(codigoVertexLinea, codigoFragmentLinea);
     unsigned int shaderPuntos = compilarShader(codigoVertexPunto, codigoFragmentPunto);
+    // COMPILAR SHADER DEL GRID
+    unsigned int shaderGrid = compilarShader(codigoVertexGrid, codigoFragmentGrid);
+    if (shaderGrid == 0) {
+        cout << "Error creando shader del grid" << endl;
+        return -1;
+    }
+
+    // CREAR Y CONFIGURAR BUFFERS DEL GRID
+    vector<float> verticesGrid = generarVerticesGrid();
+
+    glGenVertexArrays(1, &VAOGrid);
+    glGenBuffers(1, &VBOGrid);
+
+    glBindVertexArray(VAOGrid);
+    glBindBuffer(GL_ARRAY_BUFFER, VBOGrid);
+    glBufferData(GL_ARRAY_BUFFER, verticesGrid.size() * sizeof(float), verticesGrid.data(), GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 
     if (shaderLineas == 0 || shaderPuntos == 0) {
         cout << "error creando shaders" << endl;
         return -1;
     }
+
 
     //para mostrar la informacion de los datos
     const GLubyte* renderer = glGetString(GL_RENDERER);
@@ -192,18 +240,63 @@ int main(){
 
 
     //  DATOS DE LOS EJES 3D (para referencia visual)
-    float verticesEjes[] = {
+    /*float verticesEjes[] = {
         // Eje X (Rojo) - de -1 a +1 en X
-        -5.0f,  0.0f,  0.0f,  // Punto inicio eje X
-        5.0f,  0.0f,  0.0f,  // Punto fin eje X
+        -1.0f,  0.0f,  0.0f,  // Punto inicio eje X
+        1.0f,  0.0f,  0.0f,  // Punto fin eje X
         
         // Eje Y (Verde) - de -1 a +1 en Y
-        0.0f, -5.0f,  0.0f,  // Punto inicio eje Y
-        0.0f,  5.0f,  0.0f,  // Punto fin eje Y
+        0.0f, -1.0f,  0.0f,  // Punto inicio eje Y
+        0.0f,  1.0f,  0.0f,  // Punto fin eje Y
         
         // Eje Z (Azul) - de -1 a +1 en Z  
-        0.0f,  0.0f, -5.0f,  // Punto inicio eje Z
-        0.0f,  0.0f,  5.0f   // Punto fin eje Z
+        0.0f,  0.0f, -1.0f,  // Punto inicio eje Z
+        0.0f,  0.0f,  1.0f   // Punto fin eje Z
+    };*/
+
+    // DATOS DE LOS EJES 3D CON FLECHAS
+    float verticesEjes[] = {
+        // Eje X (Rojo) - línea principal + flecha
+        -1.0f,  0.0f,  0.0f,  // Inicio eje X
+        1.0f,  0.0f,  0.0f,   // Fin eje X (antes de la flecha)
+        
+        // Flecha eje X (triángulo)
+        1.0f,  0.0f,  0.0f,   // Punta de la flecha
+        0.9f,  0.05f, 0.0f,   // Esquina 1 de la flecha
+        1.0f,  0.0f,  0.0f,   // Punta de la flecha  
+        0.9f, -0.05f, 0.0f,   // Esquina 2 de la flecha
+        1.0f,  0.0f,  0.0f,   // Punta de la flecha
+        0.9f,  0.0f,  0.05f,  // Esquina 3 de la flecha
+        1.0f,  0.0f,  0.0f,   // Punta de la flecha
+        0.9f,  0.0f, -0.05f,  // Esquina 4 de la flecha
+        
+        // Eje Y (Verde) - línea principal + flecha
+        0.0f, -1.0f,  0.0f,   // Inicio eje Y
+        0.0f,  1.0f,  0.0f,   // Fin eje Y (antes de la flecha)
+        
+        // Flecha eje Y (triángulo)
+        0.0f,  1.0f,  0.0f,   // Punta de la flecha
+        0.05f, 0.9f,  0.0f,   // Esquina 1 de la flecha
+        0.0f,  1.0f,  0.0f,   // Punta de la flecha
+        -0.05f,0.9f,  0.0f,   // Esquina 2 de la flecha
+        0.0f,  1.0f,  0.0f,   // Punta de la flecha
+        0.0f,  0.9f,  0.05f,  // Esquina 3 de la flecha
+        0.0f,  1.0f,  0.0f,   // Punta de la flecha
+        0.0f,  0.9f, -0.05f,  // Esquina 4 de la flecha
+        
+        // Eje Z (Azul) - línea principal + flecha
+        0.0f,  0.0f, -1.0f,   // Inicio eje Z
+        0.0f,  0.0f,  1.0f,   // Fin eje Z (antes de la flecha)
+        
+        // Flecha eje Z (triángulo)
+        0.0f,  0.0f,  1.0f,   // Punta de la flecha
+        0.05f, 0.0f,  0.9f,   // Esquina 1 de la flecha
+        0.0f,  0.0f,  1.0f,   // Punta de la flecha
+        -0.05f,0.0f,  0.9f,   // Esquina 2 de la flecha
+        0.0f,  0.0f,  1.0f,   // Punta de la flecha
+        0.0f,  0.05f, 0.9f,   // Esquina 3 de la flecha
+        0.0f,  0.0f,  1.0f,   // Punta de la flecha
+        0.0f, -0.05f, 0.9f,   // Esquina 4 de la flecha
     };
 
     // CREAR BUFFERS PARA EJES
@@ -244,111 +337,172 @@ int main(){
     //este bucle nos sireve para mantener la ventana abierta (loop)
     while (!glfwWindowShouldClose(ventana)){ 
 
-    manejarInput(ventana);
-    procesarComandosPendientes(gestorPuntos);
-    
-    glClear(GL_COLOR_BUFFER_BIT);
+        manejarInput(ventana);
+        procesarComandosPendientes(gestorPuntos);
+        
+        glClear(GL_COLOR_BUFFER_BIT);
 
-    // OBTENER MATRICES DE CÁMARA
-    Matrix4 vista = camara.obtenerVista();
-    Matrix4 proyeccion = camara.obtenerProyeccion();
+        // OBTENER MATRICES DE CÁMARA
+        Matrix4 vista = camara.obtenerVista();
+        Matrix4 proyeccion = camara.obtenerProyeccion();
 
-    // OBTENER DATOS ACTUALIZADOS
-    vector<Punto3D> puntosActivos = gestorPuntos.obtenerPuntosActivos();
-    vector<Conexion> conexionesActivas = gestorPuntos.obtenerConexionesActivas();
+        // OBTENER DATOS ACTUALIZADOS
+        vector<Punto3D> puntosActivos = gestorPuntos.obtenerPuntosActivos();
+        vector<Conexion> conexionesActivas = gestorPuntos.obtenerConexionesActivas();
 
-    // DIBUJAR EJES DE REFERENCIA
-    glUseProgram(shaderLineas);
-    glBindVertexArray(VAOEjes);
-    
-    glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
-    glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
+        // DIBUJAR EJES DE REFERENCIA
+        /*glUseProgram(shaderLineas);
+        glBindVertexArray(VAOEjes);
+        
+        glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
+        glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
 
-    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 1.0f, 0.0f, 0.0f);
-    glDrawArrays(GL_LINES, 0, 2);  // Eje X
+        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 1.0f, 0.0f, 0.0f);
+        glDrawArrays(GL_LINES, 0, 2);  // Eje X
 
-    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 1.0f, 0.0f);
-    glDrawArrays(GL_LINES, 2, 2);  // Eje Y
+        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 1.0f, 0.0f);
+        glDrawArrays(GL_LINES, 2, 2);  // Eje Y
 
-    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 0.0f, 1.0f);
-    glDrawArrays(GL_LINES, 4, 2);  // Eje Z
+        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 0.0f, 1.0f);
+        glDrawArrays(GL_LINES, 4, 2);  // Eje Z
 
-    glBindVertexArray(0);
+        glBindVertexArray(0);
+        */
+        // DIBUJAR EJES DE REFERENCIA CON FLECHAS
+        glUseProgram(shaderLineas);
+        glBindVertexArray(VAOEjes);
 
-    // ==================================================
-    // DIBUJAR CONEXIONES ENTRE PUNTOS (FALTABA ESTO)
-    // ==================================================
-    if (!conexionesActivas.empty()) {
-        vector<float> verticesConexiones;
-        for (const auto& conexion : conexionesActivas) {
-            if (conexion.estaActiva() && 
-                conexion.idPuntoA < puntosActivos.size() && 
-                conexion.idPuntoB < puntosActivos.size()) {
-                
-                verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.x);
-                verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.y);
-                verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.z);
-                
-                verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.x);
-                verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.y);
-                verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.z);
-            }
-        }
+        glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
+        glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
 
-        if (!verticesConexiones.empty()) {
-            glUseProgram(shaderLineas);
-            glBindVertexArray(VAOConexiones);
-            glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
-            glBufferData(GL_ARRAY_BUFFER, verticesConexiones.size() * sizeof(float), 
-                        verticesConexiones.data(), GL_DYNAMIC_DRAW);
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-            glEnableVertexAttribArray(0);
+        // Eje X (Rojo) - Línea principal
+        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 1.0f, 0.0f, 0.0f);
+        glDrawArrays(GL_LINES, 0, 2);  // Línea del eje X
 
-            glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
-            glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
-            glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.7f, 0.7f, 0.7f);
-            glDrawArrays(GL_LINES, 0, verticesConexiones.size() / 3);
+        // Flecha del eje X
+        glDrawArrays(GL_LINES, 2, 8);  // Las 4 líneas de la flecha
+
+        // Eje Y (Verde) - Línea principal
+        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 1.0f, 0.0f);
+        glDrawArrays(GL_LINES, 10, 2); // Línea del eje Y
+
+        // Flecha del eje Y  
+        glDrawArrays(GL_LINES, 12, 8); // Las 4 líneas de la flecha
+
+        // Eje Z (Azul) - Línea principal
+        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 0.0f, 1.0f);
+        glDrawArrays(GL_LINES, 20, 2); // Línea del eje Z
+
+        // Flecha del eje Z
+        glDrawArrays(GL_LINES, 22, 8); // Las 4 líneas de la flecha
+
+        glBindVertexArray(0);
+
+
+        // ==================================================
+        // DIBUJAR GRID 3D
+        // ==================================================
+        if (mostrarGrid) {
+            glUseProgram(shaderGrid);
+            glBindVertexArray(VAOGrid);
+            
+            // Pasar matrices al shader del grid
+            glUniformMatrix4fv(glGetUniformLocation(shaderGrid, "view"), 1, GL_FALSE, &vista.m[0]);
+            glUniformMatrix4fv(glGetUniformLocation(shaderGrid, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
+            
+            // Dibujar grid con colores tenues por plano
+            int totalVertices = verticesGrid.size() / 3;
+            int verticesPorPlano = totalVertices / 3;
+            
+            // Plano XY - Verde tenue
+            glUniform3f(glGetUniformLocation(shaderGrid, "colorGrid"), 0.2f, 0.5f, 0.2f);
+            glDrawArrays(GL_LINES, 0, verticesPorPlano);
+            
+            // Plano XZ - Azul tenue  
+            glUniform3f(glGetUniformLocation(shaderGrid, "colorGrid"), 0.2f, 0.2f, 0.5f);
+            glDrawArrays(GL_LINES, verticesPorPlano, verticesPorPlano);
+            
+            // Plano YZ - Rojo tenue
+            glUniform3f(glGetUniformLocation(shaderGrid, "colorGrid"), 0.5f, 0.2f, 0.2f);
+            glDrawArrays(GL_LINES, verticesPorPlano * 2, verticesPorPlano);
+            
             glBindVertexArray(0);
         }
-    }
 
-    // ==================================================
-    // DIBUJAR PUNTOS
-    // ==================================================
-    if (!puntosActivos.empty()) {
-        glUseProgram(shaderLineas);
-        
-        for (const auto& punto : puntosActivos) {
-            if (punto.estaActivo()) {
-                float tam = 0.02f;
-                float x = punto.posicion.x;
-                float y = punto.posicion.y;
-                float z = punto.posicion.z;
-                
-                float cruzVertices[] = {
-                    x-tam, y, z, x+tam, y, z,
-                    x, y-tam, z, x, y+tam, z
-                };
-                
+        // ==================================================
+        // DIBUJAR CONEXIONES ENTRE PUNTOS 
+        // ==================================================
+        if (!conexionesActivas.empty()) {
+            vector<float> verticesConexiones;
+            for (const auto& conexion : conexionesActivas) {
+                if (conexion.estaActiva() && 
+                    conexion.idPuntoA < puntosActivos.size() && 
+                    conexion.idPuntoB < puntosActivos.size()) {
+                    
+                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.x);
+                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.y);
+                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoA].posicion.z);
+                    
+                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.x);
+                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.y);
+                    verticesConexiones.push_back(puntosActivos[conexion.idPuntoB].posicion.z);
+                }
+            }
+
+            if (!verticesConexiones.empty()) {
+                glUseProgram(shaderLineas);
                 glBindVertexArray(VAOConexiones);
                 glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
-                glBufferData(GL_ARRAY_BUFFER, sizeof(cruzVertices), cruzVertices, GL_DYNAMIC_DRAW);
+                glBufferData(GL_ARRAY_BUFFER, verticesConexiones.size() * sizeof(float), 
+                            verticesConexiones.data(), GL_DYNAMIC_DRAW);
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
                 glEnableVertexAttribArray(0);
-                
+
                 glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
                 glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
-                glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 
-                          punto.color.x, punto.color.y, punto.color.z);
-                glDrawArrays(GL_LINES, 0, 4);
+                glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.7f, 0.7f, 0.7f);
+                glDrawArrays(GL_LINES, 0, verticesConexiones.size() / 3);
+                glBindVertexArray(0);
             }
         }
-        glBindVertexArray(0);
-    }
 
-    glfwSwapBuffers(ventana);
-    glfwPollEvents();    
-}
+        // ==================================================
+        // DIBUJAR PUNTOS
+        // ==================================================
+        if (!puntosActivos.empty()) {
+            glUseProgram(shaderLineas);
+            
+            for (const auto& punto : puntosActivos) {
+                if (punto.estaActivo()) {
+                    float tam = 0.02f;
+                    float x = punto.posicion.x;
+                    float y = punto.posicion.y;
+                    float z = punto.posicion.z;
+                    
+                    float cruzVertices[] = {
+                        x-tam, y, z, x+tam, y, z,
+                        x, y-tam, z, x, y+tam, z
+                    };
+                    
+                    glBindVertexArray(VAOConexiones);
+                    glBindBuffer(GL_ARRAY_BUFFER, VBOConexiones);
+                    glBufferData(GL_ARRAY_BUFFER, sizeof(cruzVertices), cruzVertices, GL_DYNAMIC_DRAW);
+                    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+                    glEnableVertexAttribArray(0);
+                    
+                    glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "view"), 1, GL_FALSE, &vista.m[0]);
+                    glUniformMatrix4fv(glGetUniformLocation(shaderLineas, "projection"), 1, GL_FALSE, &proyeccion.m[0]);
+                    glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 
+                            punto.color.x, punto.color.y, punto.color.z);
+                    glDrawArrays(GL_LINES, 0, 4);
+                }
+            }
+            glBindVertexArray(0);
+        }
+
+        glfwSwapBuffers(ventana);
+        glfwPollEvents();    
+    }
   
 
     //limpiar y salir
@@ -424,12 +578,13 @@ unsigned int compilarShader(const char* codigoVertice, const char* codigoFragmen
 void mostrarMenu() {
     cout << "\n         COMANDOS" << endl;
     cout << "a x y z - Agregar punto" << endl;
-    cout << "c Pid1 Pid2 - Conectar puntos" << endl;
+    cout << "c P1 P2 - Conectar puntos" << endl;
     cout << "l - Listar puntos" << endl;
-    cout << "d Pid - Eliminar punto" << endl;
+    cout << "d P1 - Eliminar punto" << endl;
     cout << "r - Reiniciar escena" << endl;
+    cout << "grid on/off - Mostrar/ocultar grid 3D" << endl;  // NUEVA LÍNEA
     cout << "s - Salir del programa" << endl;
-    cout << "h - Mostrar este menu" << endl<<endl;
+    cout << "h - Mostrar este menu" << endl << endl;
 }
 
 void procesarComando(const string& comando, GestorPuntos& gestor) {
@@ -481,6 +636,22 @@ void procesarComando(const string& comando, GestorPuntos& gestor) {
     else if (accion == "s") {
         cout << "Saliendo..." << endl;
         exit(0);
+    } 
+    else if (accion == "grid") {
+        string estado;
+        if (ss >> estado) {
+            if (estado == "on") {
+                mostrarGrid = true;
+                cout << "Grid activado" << endl;
+            } else if (estado == "off") {
+                mostrarGrid = false;
+                cout << "Grid desactivado" << endl;
+            }
+        } else {
+            // Toggle si no se especifica estado
+            mostrarGrid = !mostrarGrid;
+            cout << "Grid " << (mostrarGrid ? "activado" : "desactivado") << endl;
+        }
     }
     else {
         cout << "Comando desconocido. Use 'h' para ayuda." << endl;
@@ -518,6 +689,22 @@ void procesarComandosPendientes(GestorPuntos& gestor) {
             string id;
             if (ss >> id) {
                 gestor.eliminarPunto(id);
+            }
+        }
+        else if (accion == "grid") {
+            string estado;
+            if (ss >> estado) {
+                if (estado == "on") {
+                    mostrarGrid = true;
+                    cout << "Grid activado" << endl;
+                } else if (estado == "off") {
+                    mostrarGrid = false;
+                    cout << "Grid desactivado" << endl;
+                }
+            } else {
+                // Toggle si no se especifica estado
+                mostrarGrid = !mostrarGrid;
+                cout << "Grid " << (mostrarGrid ? "activado" : "desactivado") << endl;
             }
         }
         else if (accion == "r") {
@@ -584,4 +771,42 @@ void callbackRuedaMouse(GLFWwindow* window, double xoffset, double yoffset) {
     if (camara.distancia > 20.0f) camara.distancia = 20.0f;
     
     camara.actualizar();
+}
+
+vector<float> generarVerticesGrid() {
+    vector<float> vertices;
+    float tamaño = 2.0f;  // Grid de -2 a +2 en cada eje
+    float paso = 0.5f;    // Líneas cada 0.5 unidades
+    
+    // PLANO XY (Z = 0) - Color verde tenue
+    for(float i = -tamaño; i <= tamaño; i += paso) {
+        // Líneas paralelas al eje X
+        vertices.insert(vertices.end(), {-tamaño, i, 0.0f});
+        vertices.insert(vertices.end(), {tamaño, i, 0.0f});
+        // Líneas paralelas al eje Y  
+        vertices.insert(vertices.end(), {i, -tamaño, 0.0f});
+        vertices.insert(vertices.end(), {i, tamaño, 0.0f});
+    }
+    
+    // PLANO XZ (Y = 0) - Color azul tenue
+    for(float i = -tamaño; i <= tamaño; i += paso) {
+        // Líneas paralelas al eje X
+        vertices.insert(vertices.end(), {-tamaño, 0.0f, i});
+        vertices.insert(vertices.end(), {tamaño, 0.0f, i});
+        // Líneas paralelas al eje Z
+        vertices.insert(vertices.end(), {i, 0.0f, -tamaño});
+        vertices.insert(vertices.end(), {i, 0.0f, tamaño});
+    }
+    
+    // PLANO YZ (X = 0) - Color rojo tenue  
+    for(float i = -tamaño; i <= tamaño; i += paso) {
+        // Líneas paralelas al eje Y
+        vertices.insert(vertices.end(), {0.0f, -tamaño, i});
+        vertices.insert(vertices.end(), {0.0f, tamaño, i});
+        // Líneas paralelas al eje Z
+        vertices.insert(vertices.end(), {0.0f, i, -tamaño});
+        vertices.insert(vertices.end(), {0.0f, i, tamaño});
+    }
+    
+    return vertices;
 }
