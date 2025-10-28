@@ -5,11 +5,25 @@ using namespace std;
 
 // Constructor - inicializa el contador
 GestorPuntos::GestorPuntos() : contadorPuntos(1) {
+    agregarPunto(0.0f, 0.0f, 0.0f);
+    cout<<"El punto 'P0' es el origen (puede hacer conexiones con el*)"<<endl;
+    if (!puntos.empty()) {
+        puntos[0].nombre = "P0";
+    }
+    contadorPuntos = 1;
 }
 
 // Agregar un nuevo punto con coordenadas específicas
 bool GestorPuntos::agregarPunto(float x, float y, float z) {
-    string nombre = generarNombrePunto();
+    string nombre;
+    
+    // Si es el primer punto, llamarlo P0
+    if (puntos.empty()) {
+        nombre = "P0";
+    } else {
+        nombre = generarNombrePunto();
+    }
+    
     Punto3D nuevoPunto(nombre, x, y, z);
     puntos.push_back(nuevoPunto);
     

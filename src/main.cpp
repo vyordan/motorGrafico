@@ -137,8 +137,16 @@ double mouseXAnterior = 0, mouseYAnterior = 0;
 bool mostrarGrid = true;
 unsigned int shaderGrid;
 unsigned int VBOGrid, VAOGrid;
+enum FuncionPredefinida {
+    PARABOLOIDE,    // z = x² + y²
+    SENO_COSENO,    // z = sin(x) * cos(y)  
+    PLANO_XY,       // z = 0
+    MONTANA,        // z = sin(sqrt(x² + y²))
+    ONDA            // z = sin(x) + cos(y)
+};
 
 
+void graficarFuncionPredefinida(GestorPuntos& gestor, FuncionPredefinida tipo);
 void callbackClickMouse(GLFWwindow* window, int button, int action, int mods) ;
 void callbackMovimientoMouse(GLFWwindow* window, double xpos, double ypos);
 void callbackRuedaMouse(GLFWwindow* window, double xoffset, double yoffset);
@@ -233,9 +241,9 @@ int main(){
     // CREAR GESTOR DE PUNTOS
     mostrarMenu();
     GestorPuntos gestorPuntos;
+
     
     ///*
-    
   
     //*/                                     
 
@@ -583,9 +591,17 @@ void mostrarMenu() {
     cout << "l - Listar puntos" << endl;
     cout << "d P1 - Eliminar punto" << endl;
     cout << "r - Reiniciar escena" << endl;
-    cout << "grid on/off - Mostrar/ocultar grid 3D" << endl;  // NUEVA LÍNEA
+    cout << "grid on/off - Mostrar/ocultar grid 3D" << endl;
+    cout << "graf [tipo] - Graficar función 3D" << endl;  // NUEVA LÍNEA
     cout << "s - Salir del programa" << endl;
     cout << "h - Mostrar este menu" << endl << endl;
+    
+    cout << "Funciones para graf:" << endl;
+    cout << "  paraboloide - z = x² + y²" << endl;
+    cout << "  seno - z = sin(x) * cos(y)" << endl;
+    cout << "  plano - Plano XY (z = 0)" << endl;
+    cout << "  montana - z = sin(√(x² + y²))" << endl;
+    cout << "  onda - z = sin(x) + cos(y)" << endl << endl;
 }
 
 void procesarComando(const string& comando, GestorPuntos& gestor) {
@@ -690,6 +706,31 @@ void procesarComandosPendientes(GestorPuntos& gestor) {
             string id;
             if (ss >> id) {
                 gestor.eliminarPunto(id);
+            }
+        } else if (accion == "graf") {
+            string tipo;
+            if (ss >> tipo) {
+                if (tipo == "paraboloide") {
+                    graficarFuncionPredefinida(gestor, PARABOLOIDE);
+                }
+                else if (tipo == "seno") {
+                    graficarFuncionPredefinida(gestor, SENO_COSENO);
+                }
+                else if (tipo == "plano") {
+                    graficarFuncionPredefinida(gestor, PLANO_XY);
+                }
+                else if (tipo == "montana") {
+                    graficarFuncionPredefinida(gestor, MONTANA);
+                }
+                else if (tipo == "onda") {
+                    graficarFuncionPredefinida(gestor, ONDA);
+                }
+                else {
+                    cout << "Funciones disponibles: paraboloide, seno, plano, montana, onda" << endl;
+                }
+            } else {
+                cout << "Uso: graph [tipo]" << endl;
+                cout << "Tipos: paraboloide, seno, plano, montana, onda" << endl;
             }
         }
         else if (accion == "grid") {
@@ -810,4 +851,64 @@ vector<float> generarVerticesGrid() {
     }
     
     return vertices;
+}
+
+void graficarFuncionPredefinida(GestorPuntos& gestor, FuncionPredefinida tipo) {
+    gestor.limpiarPuntos();
+    gestor.limpiarConexiones();
+    
+    float rango = 2.0f;
+    float paso = 0.3f;
+    
+    switch(tipo) {
+        case PARABOLOIDE:
+            for(float x = -rango; x <= rango; x += paso) {
+                for(float y = -rango; y <= rango; y += paso) {
+                    float z = x*x + y*y;
+                    gestor.agregarPunto(x, y, z);
+                }
+            }
+            cout << "Paraboloide graficado: z = x² + y²" << endl;
+            break;
+            
+        case SENO_COSENO:
+            for(float x = -rango; x <= rango; x += paso) {
+                for(float y = -rango; y <= rango; y += paso) {
+                    float z = sin(x) * cos(y);
+                    gestor.agregarPunto(x, y, z);
+                }
+            }
+            cout << "Función seno-coseno graficada: z = sin(x) * cos(y)" << endl;
+            break;
+            
+        case PLANO_XY:
+            for(float x = -rango; x <= rango; x += paso) {
+                for(float y = -rango; y <= rango; y += paso) {
+                    gestor.agregarPunto(x, y, 0);
+                }
+            }
+            cout << "Plano XY graficado: z = 0" << endl;
+            break;
+            
+        case MONTANA:
+            for(float x = -rango; x <= rango; x += paso) {
+                for(float y = -rango; y <= rango; y += paso) {
+                    float distancia = sqrt(x*x + y*y);
+                    float z = sin(distancia);
+                    gestor.agregarPunto(x, y, z);
+                }
+            }
+            cout << "Montaña graficada: z = sin(√(x² + y²))" << endl;
+            break;
+            
+        case ONDA:
+            for(float x = -rango; x <= rango; x += paso) {
+                for(float y = -rango; y <= rango; y += paso) {
+                    float z = sin(x) + cos(y);
+                    gestor.agregarPunto(x, y, z);
+                }
+            }
+            cout << "Onda graficada: z = sin(x) + cos(y)" << endl;
+            break;
+    }
 }
