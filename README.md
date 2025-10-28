@@ -1,0 +1,2 @@
+![Captura de pantalla](https://github.com/vyordan/motorGrafico/blob/master/capturas/2025-10-22_03-51-01.png)
+![Captura de pantalla](https://github.com/vyordan/motorGrafico/blob/master/capturas/2025-10-22_00-59-19.png)
