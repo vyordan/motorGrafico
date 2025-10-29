@@ -33,7 +33,6 @@ sudo pacman -S base-devel cmake glfw-x11 glm glew freeglut mesa
 ```
 **Para Ubuntu | Debian Linux:**
 ```bash
-sudo apt update
 sudo apt install build-essential cmake libglfw3-dev libglm-dev libglew-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev
 ```
 **Para Fedora Linux:**
