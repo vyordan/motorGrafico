@@ -1,11 +1,19 @@
 # Motor Gráfico 3D - Visualizador de Puntos
 
-Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y superficies matemáticas.
+Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y funciones matemáticas.
 
-## 🔧 Instalación y Compilación
+## Ejecución 
+```bash
+# Navegar al directorio build
+cd build
 
-### Prerrequisitos del Sistema
+# Compilar el proyecto
+make
 
+# Ejecutar la aplicación
+./Visualizador3D
+```
+## Instalar dependencias
 **Para Arch Linux:**
 ```bash
 sudo pacman -S base-devel glfw-x11 mesa
