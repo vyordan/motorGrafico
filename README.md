@@ -3,19 +3,6 @@
 Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y funciones matemáticas.
 
 ## Ejecución 
-
-base-devel / build-essential - Compilador C++
-
-cmake - Sistema de compilación
-
-glfw - Ventanas y input
-
-glm - Matemáticas 3D
-
-glew - OpenGL moderno
-
-freeglut / mesa - Renderizado 3D
-
 ```bash
 # Navegar al directorio build
 cd build
@@ -27,6 +14,17 @@ make
 ./Visualizador3D
 ```
 ## Instalar dependencias
+base-devel / build-essential - Compilador C++
+
+cmake - Sistema de compilación
+
+glfw - Ventanas y input
+
+glm - Matemáticas 3D
+
+glew - OpenGL moderno
+
+freeglut / mesa - Renderizado 3D
 **Para Arch Linux:**
 ```bash
 sudo pacman -S base-devel glfw-x11 mesa
