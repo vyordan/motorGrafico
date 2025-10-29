@@ -2,6 +2,38 @@
 
 Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y funciones matemáticas.
 
+## Comandos de uso
+```bash
+# Agregar punto 3D
+a x y z
+
+# Conectar puntos
+c P1 P2
+
+# Funciones 3D
+graf paraboloide
+graf seno
+graf plano
+graf montana  
+graf onda
+
+# Controles
+grid on/off
+l
+r
+h
+s
+```
+Click izquierdo + arrastrar: Rotar cámara
+
+Rueda mouse: Zoom
+
+
+**VIDEO DEMOSTRATIVO de uso**
+
+[![VIDEO DEMOSTRATIVO](https://img.youtube.com/vi/QP6T9h0j4mI/0.jpg)](https://www.youtube.com/watch?v=QP6T9h0j4mI)
+
+
 ## Ejecución 
 ```bash
 # Navegar al directorio build
@@ -40,34 +72,4 @@ sudo apt install build-essential cmake libglfw3-dev libglm-dev libglew-dev libgl
 sudo dnf install gcc-c++ cmake glfw-devel glm-devel glew-devel freeglut-devel mesa-libGLU
 ```
 
-## Comandos de uso
-```bash
-# Agregar punto 3D
-a x y z
-
-# Conectar puntos
-c P1 P2
-
-# Funciones 3D
-graf paraboloide
-graf seno
-graf plano
-graf montana  
-graf onda
-
-# Controles
-grid on/off
-l
-r
-h
-s
-```
-Click izquierdo + arrastrar: Rotar cámara
-
-Rueda mouse: Zoom
-
-
-**VIDEO DEMOSTRATIVO de uso**
-
-[![VIDEO DEMOSTRATIVO](https://img.youtube.com/vi/QP6T9h0j4mI/0.jpg)](https://www.youtube.com/watch?v=QP6T9h0j4mI)
 
