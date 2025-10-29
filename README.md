@@ -29,7 +29,7 @@ freeglut / mesa - Renderizado 3D
 
 **Para Arch Linux:**
 ```bash
-sudo pacman -S base-devel glfw-x11 mesa
+sudo pacman -S base-devel cmake glfw-x11 glm glew freeglut mesa
 ```
 **Para Ubuntu | Debian Linux:**
 ```bash
