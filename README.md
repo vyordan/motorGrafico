@@ -5,9 +5,3 @@ VIDEO DEMOSTRATIVO
 
 Motor Gráfico 3D - Visualizador de Puntos
 
-
-
-
-
-![Captura de pantalla](https://github.com/vyordan/motorGrafico/blob/master/capturas/2025-10-22_03-51-01.png)
-
