@@ -44,3 +44,27 @@ sudo dnf install gcc-c++ cmake glfw-devel glm-devel glew-devel freeglut-devel me
 ##VIDEO DEMOSTRATIVO de uso
 
 [![VIDEO DEMOSTRATIVO](https://img.youtube.com/vi/QP6T9h0j4mI/0.jpg)](https://www.youtube.com/watch?v=QP6T9h0j4mI)
+
+##Comandos de uso
+```bash
+# Agregar punto 3D
+a x y z
+
+# Conectar puntos
+c P1 P2
+
+# Funciones 3D
+graf paraboloide
+graf seno
+graf plano
+graf montana  
+graf onda
+
+# Controles
+grid on/off
+l
+r
+h
+s
+```
+
