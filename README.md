@@ -14,6 +14,7 @@ make
 ./Visualizador3D
 ```
 ## Instalar dependencias
+
 base-devel / build-essential - Compilador C++
 
 cmake - Sistema de compilación
@@ -25,6 +26,7 @@ glm - Matemáticas 3D
 glew - OpenGL moderno
 
 freeglut / mesa - Renderizado 3D
+
 **Para Arch Linux:**
 ```bash
 sudo pacman -S base-devel glfw-x11 mesa
