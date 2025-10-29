@@ -1,7 +1,7 @@
-# Motor Gráfico 3D - Visualizador de Puntos
+# Motor Gráfico 3D - Visualizador de Puntos [TAREA DE CALCULO II]
 
 Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y funciones matemáticas.
-(PARTE DESDE MI TAREA DE CALCULO 2)
+
 
 ## Comandos de uso
 ```bash
