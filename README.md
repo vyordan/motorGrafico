@@ -2,14 +2,20 @@
 
 Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y funciones matemáticas.
 
-*base-devel / build-essential - Compilador C++
-*cmake - Sistema de compilación
-*glfw - Ventanas y input
-*glm - Matemáticas 3D
-*glew - OpenGL moderno
-*freeglut / mesa - Renderizado 3D
-
 ## Ejecución 
+
+base-devel / build-essential - Compilador C++
+
+cmake - Sistema de compilación
+
+glfw - Ventanas y input
+
+glm - Matemáticas 3D
+
+glew - OpenGL moderno
+
+freeglut / mesa - Renderizado 3D
+
 ```bash
 # Navegar al directorio build
 cd build
