@@ -62,6 +62,10 @@ r
 h
 s
 ```
+Click izquierdo + arrastrar: Rotar cámara
+
+Rueda mouse: Zoom
+
 
 **VIDEO DEMOSTRATIVO de uso**
 
