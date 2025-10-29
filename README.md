@@ -1,34 +1,15 @@
-Motor Gráfico 3D - Visualizador de Puntos
-Un motor gráfico 3D completo desarrollado desde cero en C++/OpenGL
- Características del Motor
-🚀 Rendimiento y Arquitectura
-Sistema de renderizado optimizado con OpenGL 4.6
+# Motor Gráfico 3D - Visualizador de Puntos
 
-Pipeline gráfico personalizado con shaders GLSL
+Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y superficies matemáticas.
 
-Gestión eficiente de memoria con buffers dinámicos
+## 🔧 Instalación y Compilación
 
-Sistema de coordenadas 3D con matrices de transformación
+### Prerrequisitos del Sistema
 
-🎮 Sistema de Cámara Avanzado
-Cámara orbitacional con rotación suave
-
-Control de perspectiva en tiempo real
-
-Sistema de zoom con límites físicos
-
-Movimiento libre en 3D
-
-📊 Visualización Profesional
-Grid 3D interactivo con planos XY, XZ, YZ
-
-Ejes coordenados con flechas direccionales
-
-Sistema de puntos dinámicos con conexiones
-
-Shader de puntos con efectos visuales avanzados
-
-
+**Para Arch Linux:**
+```bash
+sudo pacman -S base-devel glfw-x11 mesa
+```
 
 
 VIDEO DEMOSTRATIVO 
