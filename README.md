@@ -18,6 +18,15 @@ make
 ```bash
 sudo pacman -S base-devel glfw-x11 mesa
 ```
+**Para Ubuntu|Debian Linux:**
+```bash
+sudo apt update
+sudo apt install build-essential cmake libglfw3-dev libglm-dev libglew-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev
+```
+**Para Fedora Linux:**
+```bash
+sudo dnf install gcc-c++ cmake glfw-devel glm-devel glew-devel freeglut-devel mesa-libGLU
+```
 
 
 VIDEO DEMOSTRATIVO 
