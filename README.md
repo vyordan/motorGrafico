@@ -74,5 +74,5 @@ sudo apt install build-essential cmake libglfw3-dev libglm-dev libglew-dev libgl
 sudo dnf install gcc-c++ cmake glfw-devel glm-devel glew-devel freeglut-devel mesa-libGLU
 ```
 
-![cap]()]
+![cap](https://github.com/vyordan/motorGrafico/blob/master/capturas/2025-10-22_00-59-19.png)
 
