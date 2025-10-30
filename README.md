@@ -1,4 +1,4 @@
-# Motor Gráfico 3D - Visualizador de Puntos 
+# 🧊 Motor Gráfico 3D - Visualizador de Puntos 
 ### [TAREA DE CALCULO II - Ing. Ricardo  Figueroa]
 
 Un motor gráfico 3D desarrollado desde cero en C++ con OpenGL para visualización interactiva de puntos y funciones matemáticas.
