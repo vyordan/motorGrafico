@@ -232,7 +232,7 @@ int main(){
     const GLubyte* version = glGetString(GL_VERSION);
     const GLubyte* glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
 
-    cout << "\n=== INFORMACIÓN OPENGL ===" << endl;
+    cout << "\n=== INFORMACION OPENGL ===" << endl;
     cout << "Renderer: " << renderer << endl;
     cout << "OpenGL version: " << version << endl;
     cout << "GLSL version: " << glslVersion << endl;
@@ -378,6 +378,8 @@ int main(){
         glBindVertexArray(0);
         */
         // DIBUJAR EJES DE REFERENCIA CON FLECHAS
+        //glLineWidth(2.0f); //para hacer mas gruesa las lineas 
+
         glUseProgram(shaderLineas);
         glBindVertexArray(VAOEjes);
 
@@ -399,7 +401,7 @@ int main(){
         glDrawArrays(GL_LINES, 12, 8); // Las 4 líneas de la flecha
 
         // Eje Z (Azul) - Línea principal
-        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.0f, 0.0f, 1.0f);
+        glUniform3f(glGetUniformLocation(shaderLineas, "colorLinea"), 0.4f, 0.6f, 1.0f);
         glDrawArrays(GL_LINES, 20, 2); // Línea del eje Z
 
         // Flecha del eje Z
@@ -407,6 +409,7 @@ int main(){
 
         glBindVertexArray(0);
 
+        //glLineWidth(1.0f);
 
         // ==================================================
         // DIBUJAR GRID 3D
@@ -521,6 +524,8 @@ int main(){
     cout<<"programa finalizado"<<endl;
     return 0;
 }
+
+
 
 void manejarInput(GLFWwindow *ventana){
     if (glfwGetKey(ventana, GLFW_KEY_ESCAPE) == GLFW_PRESS){
@@ -648,6 +653,7 @@ void procesarComando(const string& comando, GestorPuntos& gestor) {
         cout << "Reiniciando escena..." << endl;
     }
     else if (accion == "h") {
+        system("clear");
         mostrarMenu();
     }
     else if (accion == "s") {
@@ -754,6 +760,7 @@ void procesarComandosPendientes(GestorPuntos& gestor) {
             gestor.limpiarConexiones();
         }
         else if (accion == "h") {
+            system("clear");
             mostrarMenu();
         }
         else if (accion == "s") {
