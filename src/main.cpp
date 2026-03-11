@@ -131,7 +131,7 @@ struct Camera {
 
 Camera camara;
 bool mouseBotonIzqPresionado = false;
-bool mouseBotonDerPresionado = false;
+//bool mouseBotonDerPresionado = false;
 double mouseXAnterior = 0, mouseYAnterior = 0;
 
 bool mostrarGrid = true;
