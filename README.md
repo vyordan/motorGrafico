@@ -1,8 +1,11 @@
 # Visualizador 3D - Motor Gráfico
 
+Por si queres ver como se ve:
+https://youtu.be/QP6T9h0j4mI
+
 Proyecto de visualización 3D con OpenGL que permite crear y manipular puntos en el espacio, con soporte para múltiples funciones matemáticas predefinidas.
 
-## 📋 Requisitos del Sistema
+## Requisitos del Sistema
 
 ### Dependencias necesarias
 
@@ -40,9 +43,12 @@ sudo dnf install gcc-c++ make cmake glfw-devel mesa-libGL-devel
 ```
 
 ## Para compilar y ejecutar
+
+```bash
 cd ~/VISUALIZADOR_3D    #(vas a la carpeta del proyecto)
 mkdir -p build          #(aqui creas la carpeta build)
 cd build                #(entras a la carpeta build que es la que acabas de crear)
 cmake ..                #(preparas la compilacion)
 make                    #(compilas)
 ./Visualizador3D        #(ejecutas el archivo compilado que se acaba de crear)
+```
