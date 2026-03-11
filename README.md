@@ -24,14 +24,20 @@ Proyecto de visualización 3D con OpenGL que permite crear y manipular puntos en
 ## Instalación de dependencias por sistema operativo
 
 ### Arch Linux / Manjaro
+```bash
 sudo pacman -S base-devel cmake glfw-x11 mesa
+```
 
-### Ubuntu / DEbian
+### Ubuntu / Debian
+```bash
 sudo apt-get update
 sudo apt-get install build-essential cmake libglfw3-dev libgl1-mesa-dev
+```
 
 ### Fedora
+```bash
 sudo dnf install gcc-c++ make cmake glfw-devel mesa-libGL-devel
+```
 
 ## Para compilar y ejecutar
 cd ~/VISUALIZADOR_3D    #(vas a la carpeta del proyecto)
