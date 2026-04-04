@@ -1,7 +1,7 @@
 # Visualizador 3D - Motor Gráfico 
 
 Por si queres ver como se ve:
-https://youtu.be/QP6T9h0j4mI
+https://youtu.be/HMhQWVTJ2wk
 
 Demo
 Proyecto de visualización 3D con OpenGL que permite crear y manipular puntos en el espacio, con soporte para múltiples funciones matemáticas predefinidas.
