@@ -29,7 +29,7 @@ Proyecto de visualización 3D con OpenGL que permite crear y manipular puntos en
 
 ### Arch Linux / Manjaro
 ```bash
-sudo pacman -S base-devel cmake glfw-x11 mesa
+sudo pacman -S --needed base-devel cmake glfw-x11 mesa
 ```
 
 ### Ubuntu / Debian
