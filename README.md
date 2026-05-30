@@ -1,5 +1,7 @@
 # Visualizador 3D - Motor Gráfico 
 
+![capturaPantalla](cap0.png)
+
 Por si queres ver como se ve:
 https://youtu.be/HMhQWVTJ2wk
 
