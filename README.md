@@ -3,7 +3,7 @@
 ![capturaPantalla](cap0.png)
 
 Por si queres ver como se ve:
-https://youtu.be/HMhQWVTJ2wk
+[video demostrativo :)](https://www.youtube.com/watch?v=HMhQWVTJ2wk)
 
 Demo
 Proyecto de visualización 3D con OpenGL que permite crear y manipular puntos en el espacio, con soporte para múltiples funciones matemáticas predefinidas.
