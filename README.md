@@ -26,6 +26,8 @@ Proyecto de visualización 3D con OpenGL que permite crear y manipular puntos en
 | OpenGL | Renderizado 3D | mesa / libgl1-mesa-dev |
 | GLAD | Cargador de OpenGL | Incluido en el proyecto |
 
+NOTA: EN LAS ESTADISTICAS DEL PROYECTO MUESTRA QUE ESTA ESCRITO EN SU MAORIA EN C AUNQUE LO QUE YO PROGRAME FUE EN C++, ESTO PASA POR QUE INCLUIMOS LA LIBRERIA GLAD
+
 
 ## Instalación de dependencias por sistema operativo
 
